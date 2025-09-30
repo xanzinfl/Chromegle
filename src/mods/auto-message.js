@@ -57,7 +57,7 @@ class AutoMessageManager extends Module {
 
     static writeMessage(target, message, letterDelay, sendDelay, chatUUID) {
 
-        logger.DEBUG("[AutoMessageManager] Write event fired")
+        Logger.DEBUG("[AutoMessageManager] Write event fired")
 
         this.writingMessage = true;
 
@@ -71,7 +71,7 @@ class AutoMessageManager extends Module {
 
             // If message finished
             if (message.length === 0) {
-                logger.DEBUG("[AutoMessageManager] Sending Message")
+                Logger.DEBUG("[AutoMessageManager] Sending Message")
                 
                 const sendButton = document.querySelector('.sendButton');
                 setTimeout(() => {
