@@ -13,7 +13,7 @@ class Note {
 
     element = undefined;
 
-    emptyText = "Click to add a profile note";
+    emptyText = "Click to add a Note";
     emptyClass = "empty";
     baseClass = "chromegle-note";
 
