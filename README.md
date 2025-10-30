@@ -16,7 +16,7 @@ A Javascript Chrome (and Opera) Extension for Uhmegle with partial support for U
 - Face Detection Bypass - NEW
 - Report Detection - NEW
 - Watermark Removal - NEW
-- Country Blocker
+- Country Blocker - Fixed
 - Geolocation
 - Calltime Counter
 - Voice Commands eg. omegle skip
