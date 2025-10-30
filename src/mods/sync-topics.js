@@ -7,7 +7,7 @@ class TopicSyncManager extends Module {
 
     loadFromSync() {
         chrome.storage.sync.get(["STORED_TOPIC_LIST"], (val) => {
-            const cachedTopics = val["STORED_TOPIC_LIST"];
+            const cachedTopics = Array.isArray(val["STORED_TOPIC_LIST"]) ? val["STORED_TOPIC_LIST"] : [];
             const localTopics = JSON.parse(localStorage.getItem("interests") || "[]");
 
             const cachedString = JSON.stringify(cachedTopics);
@@ -15,11 +15,27 @@ class TopicSyncManager extends Module {
 
             Logger.DEBUG("Cached Topics: %s | Local Topics: %s", cachedString, localString);
 
-            if (cachedString !== localString && cachedTopics != null) {
-                localStorage.setItem("interests", cachedString);
-                Logger.INFO("Updated localStorage interests on <%s> event: %s", "pageload", cachedString);
-                window.location.reload();
+            if (cachedTopics.length === 0 && localTopics.length > 0) {
+                Logger.INFO("Sync empty; saving local topics to Chrome Sync.");
+                this.saveToSync("initialUpload");
+                return;
             }
+
+            if (localTopics.length === 0 && cachedTopics.length > 0) {
+                localStorage.setItem("interests", cachedString);
+                Logger.INFO("Local interests empty; restored from Chrome Sync: %s", cachedString);
+                window.location.reload();
+                return;
+            }
+
+            if (cachedString !== localString && cachedTopics.length > 0) {
+                Logger.INFO("Differences detected; updating localStorage from Chrome Sync.");
+                localStorage.setItem("interests", cachedString);
+                window.location.reload();
+                return;
+            }
+
+            Logger.DEBUG("No sync changes required; interests in sync.");
         });
     }
 
@@ -28,7 +44,7 @@ class TopicSyncManager extends Module {
 
         try {
             chrome.storage.sync.set({ "STORED_TOPIC_LIST": localTopics }).then(() => {
-                Logger.INFO("Updated sync-storage cached topics on <%s> event: %s", eventType, JSON.stringify(localTopics));
+                Logger.INFO("Updated sync-storage cached interests on <%s> event: %s", eventType, JSON.stringify(localTopics));
             });
         } catch (err) {
             Logger.WARN("Failed to update sync-storage (context invalidated?): %s", err);
@@ -37,10 +53,11 @@ class TopicSyncManager extends Module {
 
     beforeUnload(event) {
         localStorage.setItem("__lastSyncedInterests__", localStorage.getItem("interests") || "[]");
-        Logger.DEBUG("Saved fallback local backup before unload: %s", localStorage.getItem("interests"));
+        this.saveToSync("beforeUnload");
+        Logger.DEBUG("Saved fallback and sync before unload: %s", localStorage.getItem("interests"));
     }
-    
+
     onPageStarted(event) {
-        this.saveToSync(event?.type || "chatstart");
+        this.saveToSync(event?.type || "chatStarted");
     }
 }

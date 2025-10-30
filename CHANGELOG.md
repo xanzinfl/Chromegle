@@ -1,3 +1,10 @@
+# Chromegle v4.7.1
+## FIXES
+- Fixed being unable to edit interests
+- Brought back the Clear Interests button
+
+---
+
 # Chromegle v4.7.0
 ## Whats New?
 - Face Detection Bypass - No more pesky "please show your face" popup

@@ -87,6 +87,7 @@ let Manifest;
          ReconnectManager,
          IPGrabberManager,
          SpeechEngineManager,
+         ClearInterestsManager,
          SettingsManager,
          TimerSkipManager,
          RepeatSkipManager,

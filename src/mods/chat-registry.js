@@ -5,7 +5,7 @@ class ChatRegistryManager extends Module {
 
         ChatRegistry = this;
         this.#observer.observe(document, {subtree: true, childList: true, attributes: true});
-        this.addEventListener("click", this.onButtonClick, undefined, document);
+        window.addEventListener("load", () => this.onPageLoad());
     }
 
     #setUUID = () => this.#chatUUID = shortUuid();
@@ -36,24 +36,21 @@ class ChatRegistryManager extends Module {
     pageStarted = () => this.#pageStarted;
     getUUID = () => this.#chatUUID;
 
-    onButtonClick(event) {
+    onPageLoad() {
+        if (!this.pageStarted()) {
+            this.#pageStarted = true;
 
-        if (event.target.classList.contains("skipButton")) {
-            document.dispatchEvent(new CustomEvent('chatButtonClicked', {detail: event}));
-        }
+            this.#isVideoChat = $("#videowrapper").get(0) != null;
 
-        // For banned -> Non-banned is able to use the onDocumentMutation
-        if (
-            ["videobtn", "textbtn", "videobtnunmoderated", "chatbtn"].includes(event.target.id)
-            || event.target?.src?.includes("/static/videobtn-enabled")
-        ) {
-            if (!this.pageStarted()) {
-                this.#pageStarted = true;
-                this.#isVideoChat = $("#videowrapper").get(0) != null;
-                document.dispatchEvent(new CustomEvent('pageStarted', {detail: {button: event.target, isVideoChat: this.isVideoChat()}}));
-            }
+            document.dispatchEvent(new CustomEvent("pageStarted", {
+                detail: {
+                    button: null,
+                    isVideoChat: this.isVideoChat()
+                }
+            }));
         }
     }
+
 
     onMutationObserved(mutations) {
 
