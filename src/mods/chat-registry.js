@@ -6,7 +6,6 @@ class ChatRegistryManager extends Module {
         ChatRegistry = this;
         this.#observer.observe(document, {subtree: true, childList: true, attributes: true});
         this.addEventListener("click", this.onButtonClick, undefined, document);
-
     }
 
     #setUUID = () => this.#chatUUID = shortUuid();
@@ -87,11 +86,6 @@ class ChatRegistryManager extends Module {
     }
 
     onMutationRecord(mutationRecord) {
-
-        // if (!this.#pageStarted) {
-            
-        //     return;
-        // }
 
         // Chat Loaded
         if (mutationRecord.target.id === "othervideospinner") {
@@ -230,7 +224,6 @@ class ChatRegistryManager extends Module {
             }
         }
     }
-
 
 }
 

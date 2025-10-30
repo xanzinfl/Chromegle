@@ -40,12 +40,10 @@ class ChatManager extends Module {
             return;
         }
 
-        this.cleanMidChat();
     }
 
     onChatFailedConnect(event) {
         this.onChatEnded();
-        this.cleanMidChat();
 
         event["detail"].innerHTML = (`
             <p class="statuslog">
@@ -72,39 +70,7 @@ class ChatManager extends Module {
         }
     }
 
-    cleanMidChat() {
-
-        // Remove auto-reroll styling
-        $("label:contains('Auto-reroll')")
-            .css("color", "");
-
-        // Override the college button on home-page
-        this.overrideCollegeButton();
-    }
-
-    overrideCollegeButton() {
-        const collegeStudent = $("strong:contains('College student')");
-
-        if (collegeStudent.get(0) == null) {
-            return;
-        }
-
-        const collegeParent = $(collegeStudent.get(0).parentNode)
-            .removeAttr("style")
-            .addClass("conversationgreat")
-            .get(0);
-
-        collegeParent.childNodes.item(0).remove();
-        collegeParent.innerHTML = "<strong>College Student Chat</strong>";
-
-        $(collegeParent.parentNode).css("margin-top", "10px");
-
-
-    }
-
 }
-
-
 
 
 

@@ -71,14 +71,24 @@ class UserCountManager extends Module {
 
     }
 
-    async getUserCount() {
-        try {
-            let result = await fetch(ConstantValues.apiURL + "users");
-            let json = await result.json();
-            return json['count'];
-        } catch (ex) {
-            return null;
-        }
+    async pingServer() {
+        await fetch(ConstantValues.USERapiURL + "ping", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ clientId })
+        });
     }
+
+    async getUserCount() {
+    try {
+        await this.pingServer();
+        let result = await fetch(ConstantValues.USERapiURL + "users");
+        let json = await result.json();
+        return json['count'];
+    } catch {
+        return null;
+    }
+}
+
 
 }

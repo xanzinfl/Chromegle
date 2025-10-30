@@ -16,7 +16,7 @@ html {
     font-size: 1em;
 }
 
-.homeButton {
+.logoLink {
     cursor: pointer;
     padding: 10px;
     height: 57px;
@@ -26,6 +26,14 @@ html {
     background-color: inherit;
     /*noinspection CssUnknownTarget*/
     background-image: url("chrome-extension://__MSG_@@extension_id__/public/images/HomeButton.png")
+}
+
+.iconpart {
+    display:  none;
+}
+
+.logoText {
+    display:  none;
 }
 
 .settingsButtonContainer {
@@ -524,44 +532,6 @@ span.chromegle-cancel-skip, span.chromegle-whitelist-skip, span.chromegle-un-whi
 
 #selfVideoWrapper {
     bottom: 0;
-}
-
-#videoScreenshotButton {
-    bottom: 0;
-    right: 0;
-}
-
-#videoFullscreenButton {
-    top: 0;
-    right: 0;
-}
-
-#videoPopoutButton {
-    top: 0;
-    left: 0;
-    border-radius: 0 !important;
-}
-
-#fullscreenSkipButton {
-    top: 0;
-    left: 0;
-}
-
-#videoScreenshotButton, #videoFullscreenButton, #fullscreenSkipButton, #videoPopoutButton {
-    width: 8%;
-    max-width: 70px;
-    height: unset;
-    position: absolute;
-    cursor: pointer;
-    margin: 2%;
-}
-
-#videoScreenshotButton:hover, #videoFullscreenButton:hover, #fullscreenSkipButton:hover, #videoPopoutButton:hover {
-    filter: brightness(0.9);
-}
-
-#videoScreenshotButton:active, #videoFullscreenButton:active, #fullscreenSkipButton:active, #videoPopoutButton:hover {
-    filter: brightness(0.75);
 }
 
 #spinnerWrapper {

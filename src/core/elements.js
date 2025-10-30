@@ -38,7 +38,6 @@ class Note {
         }
 
         this.element.addEventListener("click", this.onNoteClick.bind(this));
-
     }
 
     async getStorageData() {
@@ -60,7 +59,6 @@ class Note {
             try {
                 delete storedData[hashedAddress]
             } catch (ex) {
-
             }
         } else {
             storedData[hashedAddress] = newValue;
@@ -195,17 +193,6 @@ class ChatUpdateClock {
         }
 
     }
-
-}
-
-function EmbeddedLink(url) {
-
-    let element = document.createElement("a");
-    element.target = "_blank";
-    element.href = url;
-    element.innerHTML = url;
-    element.classList.add(LinkEmbedManager.linkClass);
-    return element;
 
 }
 

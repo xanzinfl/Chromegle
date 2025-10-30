@@ -21,10 +21,6 @@ class ThemeManager extends Module {
         this.OverrideManager.initialize();
         this.setThemeMode(config[themeMode].getValue());
 
-        // Header settings
-        let headerEnabled = await config.headerButtonsToggle.retrieveValue();
-        this.toggleHeaderButton(headerEnabled === "true")
-
         // Mobile support
         if (isMobile()) {
             this.OverrideManager.overrideMobile();
@@ -49,27 +45,10 @@ class ThemeManager extends Module {
     }
 
     onSettingsUpdate(event) {
-        let headerEnabled = config.headerButtonsToggle.fromSettingsUpdateEvent(event);
-
-        if (headerEnabled != null) {
-            this.toggleHeaderButton(headerEnabled === "true");
-            return;
-        }
-
         let modeChanged = config.semiLightModeOption.fromSettingsUpdateEvent(event);
 
         if (modeChanged != null) {
             this.setThemeMode(config[modeChanged].getValue());
-        }
-
-    }
-
-    toggleHeaderButton = (headerEnabled) => {
-
-        if (headerEnabled) {
-            $("#sharebuttons").css("display", "");
-        } else {
-            $("#sharebuttons").css("display", "none");
         }
 
     }
@@ -85,11 +64,9 @@ class OverrideManager {
             this.#overrideLanguage,
             this.#overrideLogo,
             this.#overrideTaglineInsertMenu,
-            this.#overrideHongKongPoster,
             this.#overrideHomePageText,
             this.#overrideLinks,
             this.#resizeCommonInterestsLabel,
-            //this.#wrapHeaderButtons
         ].forEach((fn) => {
             try {
                 fn();
@@ -112,16 +89,6 @@ class OverrideManager {
             .css("justify-content", "center")
             .css("margin-bottom", "10px")
             .css("margin-top", "10px");
-
-    }
-
-    #wrapHeaderButtons() {
-        let headerButtons = document.createElement("div");
-        headerButtons.id = "header-buttons";
-        document.getElementById("header").appendChild(headerButtons);
-
-        $("#sharebuttons").detach().appendTo('#header-buttons')
-        $("#onlinecount").detach().appendTo('#header-buttons')
 
     }
 
@@ -149,25 +116,15 @@ class OverrideManager {
         div.classList.add("settingsButtonContainer");
         div.append(ButtonFactory.menuButton.get(0))
         $(".rightSide").append(div);
-        //$("#tagline").replaceWith(div);
     };
 
-    #overrideHongKongPoster = () => {
-        let newBanner = document.createElement("img");
-        newBanner.src = getResourceURL("public/images/DiscordBanner.png");
-        newBanner.href = ConstantValues.discordURL;
-        newBanner.classList.add("customDiscordBanner");
-        $(newBanner).on("click", () => window.open(ConstantValues.discordURL));
-        $("img[src$='/static/standwithhk.jpeg']").replaceWith(newBanner);
-    }
-
     #overrideHomePageText() {
-        let note = $("#mobilesitenote").get(0);
+        let note = $("body > div > div.mainContent > p").get(0);
         if (!note) return;
 
         note.innerHTML =
             "Thanks for using Chromegle! Like what we've got? " +
-            "<a target='_blank' href='https://www.isaackogan.com'>Check out the developer</a> " +
+            "<a target='_blank' href='https://github.com/xanzinfl/chromegle#authors'>Check out the developers</a> " +
             "for more :)";
     }
 

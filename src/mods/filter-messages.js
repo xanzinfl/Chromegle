@@ -6,7 +6,7 @@ class TextFilter {
 
     constructor() {
         this.setup().then(() => {
-            Logger.DEBUG("Loaded filters");
+            Logger.INFO("Message Filters Loaded");
             this.filterLoaded = true;
         });
     }

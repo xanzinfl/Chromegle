@@ -1,4 +1,3 @@
-
 class ReconnectManager extends Module {
 
     RECONNECT_MESSAGE_ID = "reconnectMessageCountdown";
@@ -114,7 +113,5 @@ class ReconnectManager extends Module {
 
         // If ANY are true
         return reconnectCases.some(i => i);
-
     }
-
 }

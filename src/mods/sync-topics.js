@@ -1,57 +1,46 @@
 class TopicSyncManager extends Module {
-
     constructor() {
         super();
         this.loadFromSync();
         this.addEventListener("beforeunload", this.beforeUnload, undefined, window);
     }
 
-    /**
-     * Load saved topics from syncing
-     */
     loadFromSync() {
-        chrome.storage.sync.get(["STORED_TOPIC_LIST"],
-            (val) => {
-                let cachedTopicString = JSON.stringify(val["STORED_TOPIC_LIST"]);
-                let cookieTopicString = Cookies.get("topiclist", {domain: ".uhmegle.com"});
+        chrome.storage.sync.get(["STORED_TOPIC_LIST"], (val) => {
+            const cachedTopics = val["STORED_TOPIC_LIST"];
+            const localTopics = JSON.parse(localStorage.getItem("interests") || "[]");
 
-                Logger.DEBUG("Cached Topics: %s | Cookie Topics: %s", cachedTopicString, cookieTopicString);
+            const cachedString = JSON.stringify(cachedTopics);
+            const localString = JSON.stringify(localTopics);
 
-                if (cachedTopicString !== cookieTopicString && val["STORED_TOPIC_LIST"] != null) {
-                    Cookies.set("topiclist", cachedTopicString, {domain: ".uhmegle.com"});
-                    Logger.INFO("Updated Uhmegle cookie values on <%s> event: %s", "pageload", cachedTopicString);
-                    window.location.reload();
-                }
+            Logger.DEBUG("Cached Topics: %s | Local Topics: %s", cachedString, localString);
+
+            if (cachedString !== localString && cachedTopics != null) {
+                localStorage.setItem("interests", cachedString);
+                Logger.INFO("Updated localStorage interests on <%s> event: %s", "pageload", cachedString);
+                window.location.reload();
             }
-        );
+        });
     }
 
-    /**
-     * Sync stored topic with cookies on page unload
-     */
-    beforeUnload(event) {
-        const cookies = Cookies.get("topiclist", {domain: ".uhmegle.com"}) || null;
-        if (cookies != null) {
-            chrome.storage.sync.set(
-                {
-                    "STORED_TOPIC_LIST": JSON.parse(cookies)
-                }
-            ).then();
+    saveToSync(eventType = "manual") {
+        const localTopics = JSON.parse(localStorage.getItem("interests") || "[]");
+
+        try {
+            chrome.storage.sync.set({ "STORED_TOPIC_LIST": localTopics }).then(() => {
+                Logger.INFO("Updated sync-storage cached topics on <%s> event: %s", eventType, JSON.stringify(localTopics));
+            });
+        } catch (err) {
+            Logger.WARN("Failed to update sync-storage (context invalidated?): %s", err);
         }
-        Logger.INFO("Updated sync-storage cached topics on <%s> event: %s", event.type, cookies);
     }
 
-    /**
-     * Sync stored topic with cookies on chat start
-     */
-    onPageStarted() {
-        const cookies = Cookies.get("topiclist", {domain: ".uhmegle.com"}) || null;
-        chrome.storage.sync.set({"STORED_TOPIC_LIST": JSON.parse(cookies)}).then();
-        Logger.INFO("Updated sync-storage cached topics on <%s> event: %s", event.type, cookies);
+    beforeUnload(event) {
+        localStorage.setItem("__lastSyncedInterests__", localStorage.getItem("interests") || "[]");
+        Logger.DEBUG("Saved fallback local backup before unload: %s", localStorage.getItem("interests"));
+    }
+    
+    onPageStarted(event) {
+        this.saveToSync(event?.type || "chatstart");
     }
 }
-
-
-
-
-

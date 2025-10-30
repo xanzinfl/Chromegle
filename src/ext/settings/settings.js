@@ -1,8 +1,9 @@
 let ConstantValues = {
     websiteURL: "https://chromegle.net",
-    discordURL: "https://chromegle.net/discord",
-    githubURL: "https://chromegle.net/github",
-    apiURL: "https://m52o1m3c29.execute-api.eu-central-1.amazonaws.com/",
+    discordURL: "https://discord.gg/422p3anb3T",
+    githubURL: "https://github.com/xanzinfl/chromegle",
+    GEOapiURL: "https://m52o1m3c29.execute-api.eu-central-1.amazonaws.com/",
+    USERapiURL: "https://bloodmoonstudios.xyz/chromegle/",
     _helpfulTips: ["We hope you enjoy our extension as much as we enjoyed making it!"],
     getHelpfulTip: () => {
         return ConstantValues._helpfulTips[[Math.floor(Math.random() * ConstantValues._helpfulTips.length)]]
@@ -10,7 +11,6 @@ let ConstantValues = {
             .replaceAll("%website%", ConstantValues.websiteURL)
             .replaceAll("%github%", ConstantValues.githubURL);
     },
-    videoPopoutStylesheet: ""
 }
 
 class SettingsManager extends Module {
@@ -22,7 +22,6 @@ class SettingsManager extends Module {
 
 
         Logger.INFO("Settings Menu Loaded")
-        // Assign button function
         $(ButtonFactory.menuButton).on("click", () => {
             this.#menu.enable();
         })
@@ -71,7 +70,7 @@ class MutableField {
         if (!config["confirm"] || config["confirm"] === "false" || config["confirm"] === false) return false;
         const override = {}
 
-        if (this.#warning != null) {
+        if (this.#warning != null && this.getName() !== "COUNTRY_SKIP_TOGGLE") {
 
             if (this.#warning["state"] == null || this.#warning["state"] === config["value"]) {
                 let result = confirm(this.#warning["message"] || null);
@@ -102,7 +101,6 @@ class MutableField {
 
     getDefault() {
         return this.#default;
-
     }
 
     getName() {

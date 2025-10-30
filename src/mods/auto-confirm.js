@@ -3,28 +3,20 @@ class ConfirmManager extends Module {
     constructor() {
         super();
 
-        // Listen for click
         this.addMultiElementListener(
             "click", this.onButtonClick,
-            "#textbtn", "#videobtn", "#videobtnunmoderated", "#chatbtn", '[src*="/static/videobtn-enabled"]'
+            ".videoButton"
         );
-
-        // Listen for page click
-        this.addEventListener("click", this.onLinkClick);
     }
 
-    onLinkClick(event) {
+    onButtonClick(event) {
+        event.preventDefault();
 
-        if (event.target.innerText === "unmoderated section" && event) {
-            this.onButtonClick();
+        const target = event.currentTarget;
+        const href = target.getAttribute("href");
+
+        if (href) {
+            window.location.href = href;
         }
-
-    }
-
-    onButtonClick() {
-        $("input[type=checkbox]:not(:checked)").trigger("click"); // Checkboxes
-        $("input[type=button][value='Confirm & continue']").trigger("click"); // Confirmation
     }
 }
-
-

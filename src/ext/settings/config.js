@@ -197,36 +197,51 @@ const config = {
             "These can be 2 or 3 letter codes.\n\nVisit https://www.iban.com/country-codes for the full, up-to-date list of available country codes.",
         "default": "AE,AL,AM,BD,DZ,EG,GR,ID,IN,IQ,JO,KE,KW,LB,LK,LY,MA,MT,MY,NG,NP,PH,PK,SA,SC,TN,TR,QA,YE",
         "check": (response) => {
-
-            // Accept all no-values
-            if (response !== "") {
-
-                // Check alphabetical
-                if (response == null || (!response.match(/^[a-zA-Z,]+$/))) {
-                    return {
-                        "confirm": "false",
-                        "value": ""
-                    };
-                }
-
-                let split = new Set();
-                for (let code of response.split(",")) {
-                    if (code.length < 2 || code.length > 3) {
-                        return {
-                            "confirm": "false",
-                            "value": ""
-                        };
-                    } else {
-                        split.add(code.toUpperCase());
-                    }
-                }
-                response = [...split].join(",")
-
+            if (response == null) {
+                return { "confirm": "false", "value": null };
             }
+            if (response.trim() === "") {
+                 return { "confirm": "true", "value": "" };
+            }
+
+            // Validate characters allowed: letters, commas, spaces
+             if (!response.match(/^[a-zA-Z,\s]+$/)) {
+                 alert("Invalid input! Only use letters, commas, and spaces.");
+                 return { "confirm": "false", "value": null };
+                }
+
+            let codes = response.split(",");
+            let validCodes = new Set();
+            let invalidFound = false;
+
+            for (let code of codes) {
+                let trimmedCode = code.trim().toUpperCase();
+
+                if (trimmedCode.length === 0) {
+                    continue;
+                }
+
+                if (trimmedCode.length < 2 || trimmedCode.length > 3) {
+                    alert(`Invalid code length found: "${code.trim()}". Use 2 or 3 letter codes.`);
+                    invalidFound = true;
+                    break;
+                } else if (!trimmedCode.match(/^[A-Z]+$/)) {
+                     alert(`Invalid characters found in code: "${code.trim()}". Only use letters.`);
+                     invalidFound = true;
+                     break;
+                } else {
+                    validCodes.add(trimmedCode);
+                }
+            }
+
+            if (invalidFound) {
+                return { "confirm": "false", "value": null };
+            }
+            let finalValue = [...validCodes].join(",");
 
             return {
                 "confirm": "true",
-                "value": response
+                "value": finalValue
             };
         }
     }),
@@ -266,34 +281,9 @@ const config = {
         "default": "semiDarkModeOption",
         "value": "/public/css/themes/semilight.css"
     }),
-    "headerButtonsToggle": new ToggleEdit({
-        "elementName": "headerButtonsToggle",
-        "storageName": "HEADER_BUTTONS_TOGGLE",
-        "default": "false"
-    }),
-    "popoutToolButtonToggle": new ToggleEdit({
-        "elementName": "popoutToolButtonToggle",
-        "storageName": "POPOUT_TOOL_BUTTON_TOGGLE",
-        "default": "true"
-    }),
-    "fullscreenToolButtonToggle": new ToggleEdit({
-        "elementName": "fullscreenToolButtonToggle",
-        "storageName": "FULLSCREEN_TOOL_BUTTON_TOGGLE",
-        "default": "true"
-    }),
-    "screenshotToolButtonToggle": new ToggleEdit({
-        "elementName": "screenshotToolButtonToggle",
-        "storageName": "SCREENSHOT_TOOL_BUTTON_TOGGLE",
-        "default": "true"
-    }),
     "skipRepeatsToggle": new ToggleEdit({
         "elementName": "skipRepeatsToggle",
         "storageName": "SKIP_REPEATS_TOGGLE",
-        "default": "false"
-    }),
-    "pasteMenuToggle": new ToggleEdit({
-        "elementName": "pasteMenuToggle",
-        "storageName": "PASTE_MENU_TOGGLE",
         "default": "false"
     }),
     "blockedIPList": new ExternalField({
@@ -332,121 +322,8 @@ const config = {
                 "value": response
             };
         }
-    }),
-    "homePageSplashToggle": new ToggleEdit({
-        "elementName": "homePageSplashToggle",
-        "storageName": "HOME_PAGE_SPLASH_TOGGLE",
-        "default": "false"
-    }),
-    "homePageSplashEdit": new FieldEdit({
-        "storageName": "HOME_PAGE_SPLASH_FIELD",
-        "prompt": "Enter a new splash background image URL:",
-        "default": "https://i.imgur.com/qa5Hkl9.jpeg",
-        "check": (response) => {
-            return {
-                "confirm": isValidHttpsUrl(response) ? "true" : "false",
-                "value": response
-            }
-        }
-    }),
-    "autoSkipWordsToggle": new ToggleEdit({
-        "elementName": "autoSkipWordsToggle",
-        "storageName": "AUTO_SKIP_WORDS_TOGGLE",
-        "default": "false"
-    }),
-    "autoSkipAgeToggle": new ToggleEdit({
-        "elementName": "autoSkipAgeToggle",
-        "storageName": "AUTO_SKIP_AGE_TOGGLE",
-        "default": "false"
-    }),
-    "autoSkipAgeField": new FieldEdit({
-        "storageName": "AUTO_SKIP_AGE_FIELD",
-        "prompt": "Enter the ACCEPTABLE age-range when people send their age in the chat (e.g. 18-22, 18+). " +
-            "People OUTSIDE of this acceptable range will be automatically skipped.\n\n" +
-            "Only the first 5 stranger messages will be checked.",
-        "default": "18+",
-        "check": (response) => {
+    })
 
-            // Early exit
-            if (response == null) {
-                return {
-                    "confirm": "false",
-                    "value": response
-                };
-            }
-
-            response = response.replaceAll(" ", "");
-            let min, max;
-
-            // TYPE 1: Range is N-Z
-            let split = response.split("-");
-            if (isNumeric(split[0])) {
-                min = parseInt(split[0]);
-            }
-            if (isNumeric(split[1])) {
-                max = parseInt(split[1]);
-            }
-            if (min && max) {
-                return {
-                    "confirm": "true",
-                    "value": `${Math.max(18, min)}-${max}`
-                };
-            }
-
-            // TYPE 2: Range is N+
-            let test = response.replace("+", "");
-            if (isNumeric(test)) {
-                min = parseInt(test)
-            }
-            if (min) {
-                return {
-                    "confirm": "true",
-                    "value": `${Math.max(18, min)}+`
-                }
-            }
-
-            // TYPE 3: Invalid
-            return {
-                "confirm": "false",
-                "value": response
-            };
-
-        }
-    }),
-    "autoSkipWordsField": new FieldEdit({
-        "storageName": "AUTO_SKIP_WORDS_FIELD",
-        "prompt": "Enter words that should automatically result in a skipped chat, comma-separated " +
-            "(e.g. \"sex,anal,porn\").\n\n" +
-            "Only the first 5 stranger messages will be checked.",
-        "default": "sex,anal,porn",
-        "check": (response) => {
-
-            // Early exit
-            if (response == null) {
-                return {
-                    "confirm": "false",
-                    "value": response
-                };
-            }
-
-            // Sanitize
-            let values = response.split(",");
-            let sanitized = [];
-
-            for (let value of values) {
-                let sanitizedValue = value.trim().toLowerCase();
-
-                if (sanitizedValue.length > 0 && !sanitized.includes(sanitizedValue)) {
-                    sanitized.push(sanitizedValue);
-                }
-            }
-
-            return {
-                "confirm": "true",
-                "value": sanitized.join(",")
-            };
-        }
-    }),
 }
 
 

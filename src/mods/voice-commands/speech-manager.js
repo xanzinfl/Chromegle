@@ -6,7 +6,7 @@ class SpeechMenu {
     static disable = () => MicroModal.hide(this.settingsModalElementId);
 
     constructor() {
-        console.log("[INFO] (Chromegle) SpeechManager Loaded")
+        Logger.INFO("SpeechManager Loaded")
         let modal = document.createElement("div");
         $(modal).load(getResourceURL("public/html/voicecmds.html"));
         $("html").append(modal);

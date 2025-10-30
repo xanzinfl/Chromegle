@@ -185,12 +185,6 @@ class IPBlockAPI {
     }
 
     async blockAddress(address) {
-
-        // Confirm
-        if (!confirm(`Are you sure you want to block ${address}?`)) {
-            return false;
-        }
-
         // Check if blocked
         if (await this.#blockList.isBlocked(address)) {
             alert(`The IP address ${address} is already blocked in video chat!`);
