@@ -7,6 +7,7 @@ A Javascript Chrome (and Opera) Extension for Uhmegle with partial support for U
 # Table of Contents
 - [Features](#features)
 - [Installation](#installation)
+- [Changelog](#changelog)
 - [Authors](#authors)
 - [Project License](#license)
 
@@ -44,6 +45,25 @@ Manual installation is fairly easy thanks to Chrome's great developer support:
 5. Select repository directory and click OK
 6. Use on https://www.uhmegle.com/ freely
 ```
+
+# Changelog
+## v4.7.0
+### Whats New?
+- Face Detection Bypass - No more pesky "please show your face" popup
+- Report Detection - Get notified when someone reports you!
+- Auto bypass umingle prompt from the homepage
+
+### FIXES
+- Fixed Country-Skip!
+- Fixed Topic Sync
+- Fixed Online Chromeglers Count
+- Fixed Home Button Logo
+
+### Additional Info
+- Removed Confirmation on blocking IPs
+- Removed Several Broken / Unused Features
+
+> See the full changelog [Here](./CHANGELOG.md).
 
 ## Authors
 
