@@ -197,51 +197,36 @@ const config = {
             "These can be 2 or 3 letter codes.\n\nVisit https://www.iban.com/country-codes for the full, up-to-date list of available country codes.",
         "default": "AE,AL,AM,BD,DZ,EG,GR,ID,IN,IQ,JO,KE,KW,LB,LK,LY,MA,MT,MY,NG,NP,PH,PK,SA,SC,TN,TR,QA,YE",
         "check": (response) => {
-            if (response == null) {
-                return { "confirm": "false", "value": null };
-            }
-            if (response.trim() === "") {
-                 return { "confirm": "true", "value": "" };
-            }
 
-            // Validate characters allowed: letters, commas, spaces
-             if (!response.match(/^[a-zA-Z,\s]+$/)) {
-                 alert("Invalid input! Only use letters, commas, and spaces.");
-                 return { "confirm": "false", "value": null };
+            // Accept all no-values
+            if (response !== "") {
+
+                // Check alphabetical
+                if (response == null || (!response.match(/^[a-zA-Z,]+$/))) {
+                    return {
+                        "confirm": "false",
+                        "value": ""
+                    };
                 }
 
-            let codes = response.split(",");
-            let validCodes = new Set();
-            let invalidFound = false;
-
-            for (let code of codes) {
-                let trimmedCode = code.trim().toUpperCase();
-
-                if (trimmedCode.length === 0) {
-                    continue;
-                }
-
-                if (trimmedCode.length < 2 || trimmedCode.length > 3) {
-                    alert(`Invalid code length found: "${code.trim()}". Use 2 or 3 letter codes.`);
-                    invalidFound = true;
-                    break;
-                } else if (!trimmedCode.match(/^[A-Z]+$/)) {
-                     alert(`Invalid characters found in code: "${code.trim()}". Only use letters.`);
-                     invalidFound = true;
-                     break;
+                let split = new Set();
+                for (let code of response.split(",")) {
+                    if (code.length < 2 || code.length > 3) {
+                        return {
+                            "confirm": "false",
+                            "value": ""
+                        };
                 } else {
-                    validCodes.add(trimmedCode);
+                        split.add(code.toUpperCase());
+                    }
                 }
-            }
+                response = [...split].join(",")
 
-            if (invalidFound) {
-                return { "confirm": "false", "value": null };
             }
-            let finalValue = [...validCodes].join(",");
 
             return {
                 "confirm": "true",
-                "value": finalValue
+                "value": response
             };
         }
     }),

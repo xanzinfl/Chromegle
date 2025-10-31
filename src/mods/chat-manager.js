@@ -14,14 +14,11 @@ class ChatManager extends Module {
 
     onChatStarted(event) {
 
-        let logItems = document.getElementsByClassName("statuslog");
+        let logItems = document.getElementsByClassName("information");
 
         for (let log of logItems) {
-            if (log.innerText.includes("AGAINST THE CCP")) {
-                log.classList.add("tip-message");
-                log.innerHTML = `Thanks for using Chromegle! ${ConstantValues.getHelpfulTip()}`;
-            }
-
+            log.classList.add("tip-message");
+            log.innerHTML = `Thanks for using Chromegle! ${ConstantValues.getHelpfulTip()}`;
         }
 
         if (event["detail"]["isVideoChat"]) {
@@ -40,10 +37,12 @@ class ChatManager extends Module {
             return;
         }
 
+        this.cleanMidChat();
     }
 
     onChatFailedConnect(event) {
         this.onChatEnded();
+        this.cleanMidChat();
 
         event["detail"].innerHTML = (`
             <p class="statuslog">
@@ -70,6 +69,12 @@ class ChatManager extends Module {
         }
     }
 
+    cleanMidChat() {
+
+        // Remove auto-reroll styling
+        $("label:contains('Auto-reroll')")
+            .css("color", "");
+    }
 }
 
 

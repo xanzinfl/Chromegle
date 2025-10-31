@@ -47,21 +47,17 @@ Manual installation is fairly easy thanks to Chrome's great developer support:
 ```
 
 # Changelog
-## v4.7.0
+## v4.7.2
 ### Whats New?
-- Face Detection Bypass - No more pesky "please show your face" popup
-- Report Detection - Get notified when someone reports you!
-- Auto bypass umingle prompt from the homepage
+- Weve brought back the original api for more accurate location info
+- Added an update notification
 
 ### FIXES
-- Fixed Country-Skip!
-- Fixed Topic Sync
-- Fixed Online Chromeglers Count
-- Fixed Home Button Logo
+- Fixed tip message
+- User count is now more accurate/responsive
+- Country-skip is now quicker
 
-### Additional Info
-- Removed Confirmation on blocking IPs
-- Removed Several Broken / Unused Features
+-# Enjoy chatting! Please report any bugs in the discord!
 
 > See the full changelog [Here](./CHANGELOG.md).
 

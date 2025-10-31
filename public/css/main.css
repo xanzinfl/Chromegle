@@ -176,7 +176,7 @@ html {
     border: none;
 }
 
-.owner {
+.devbox {
     display: block;
     margin-top: 5px;
     margin-bottom: 10px;
@@ -683,7 +683,7 @@ html.chromegle-mobile #header {
     display: block !important;
 }
 
-html.chromegle-mobile img[src*='/static/bwlogo'],
+html.chromegle-mobile img[src*:'/static/bwlogo'],
 html.chromegle-mobile #themeSettings,
 html.chromegle-mobile .chromegle-not-mobile
 {
@@ -863,7 +863,7 @@ MODAL FALLBACK END
 /*
 COLLEGE BUTTON
  */
-#topicsettingscontainer a[href='javascript:'] > span:first-child {
+#topicsettingscontainer a[href:'javascript:'] > span:first-child {
     display: none;
 }
 

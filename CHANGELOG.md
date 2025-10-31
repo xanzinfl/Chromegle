@@ -1,7 +1,22 @@
+# Chromegle v4.7.2
+## Whats New?
+- Weve brought back the original api for more accurate location info
+- Added an update notification
+
+## FIXES
+- Fixed tip message
+- User count is now more accurate/responsive
+- Country-skip is now quicker
+
+-# Enjoy chatting! Please report any bugs in the discord!
+
+---
+
 # Chromegle v4.7.1
 ## FIXES
 - Fixed being unable to edit interests
 - Brought back the Clear Interests button
+
 
 ---
 
@@ -29,5 +44,3 @@
   - Video Fullscreen
   - Video Popout
   - Video Screenshot
-
--# Enjoy chatting! Please report any bugs in the discord!

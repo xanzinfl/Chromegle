@@ -1,52 +1,3 @@
-const countryNameToCode = {
-    "Afghanistan": "AF", "Albania": "AL", "Algeria": "DZ", "American Samoa": "AS", "Andorra": "AD",
-    "Angola": "AO", "Anguilla": "AI", "Antarctica": "AQ", "Antigua and Barbuda": "AG", "Argentina": "AR",
-    "Armenia": "AM", "Aruba": "AW", "Australia": "AU", "Austria": "AT", "Azerbaijan": "AZ", "Bahamas": "BS",
-    "Bahrain": "BH", "Bangladesh": "BD", "Barbados": "BB", "Belarus": "BY", "Belgium": "BE", "Belize": "BZ",
-    "Benin": "BJ", "Bermuda": "BM", "Bhutan": "BT", "Bolivia": "BO", "Bosnia and Herzegovina": "BA",
-    "Botswana": "BW", "Brazil": "BR", "British Indian Ocean Territory": "IO", "British Virgin Islands": "VG",
-    "Brunei": "BN", "Bulgaria": "BG", "Burkina Faso": "BF", "Burundi": "BI", "Cambodia": "KH", "Cameroon": "CM",
-    "Canada": "CA", "Cape Verde": "CV", "Cayman Islands": "KY", "Central African Republic": "CF", "Chad": "TD",
-    "Chile": "CL", "China": "CN", "Christmas Island": "CX", "Cocos Islands": "CC", "Colombia": "CO",
-    "Comoros": "KM", "Cook Islands": "CK", "Costa Rica": "CR", "Croatia": "HR", "Cuba": "CU", "Curacao": "CW",
-    "Cyprus": "CY", "Czech Republic": "CZ", "Democratic Republic of the Congo": "CD", "Denmark": "DK",
-    "Djibouti": "DJ", "Dominica": "DM", "Dominican Republic": "DO", "East Timor": "TL", "Ecuador": "EC",
-    "Egypt": "EG", "El Salvador": "SV", "Equatorial Guinea": "GQ", "Eritrea": "ER", "Estonia": "EE",
-    "Ethiopia": "ET", "Falkland Islands": "FK", "Faroe Islands": "FO", "Fiji": "FJ", "Finland": "FI",
-    "France": "FR", "French Polynesia": "PF", "Gabon": "GA", "Gambia": "GM", "Georgia": "GE", "Germany": "DE",
-    "Ghana": "GH", "Gibraltar": "GI", "Greece": "GR", "Greenland": "GL", "Grenada": "GD", "Guam": "GU",
-    "Guatemala": "GT", "Guernsey": "GG", "Guinea": "GN", "Guinea-Bissau": "GW", "Guyana": "GY", "Haiti": "HT",
-    "Honduras": "HN", "Hong Kong": "HK", "Hungary": "HU", "Iceland": "IS", "India": "IN", "Indonesia": "ID",
-    "Iran": "IR", "Iraq": "IQ", "Ireland": "IE", "Isle of Man": "IM", "Israel": "IL", "Italy": "IT",
-    "Ivory Coast": "CI", "Jamaica": "JM", "Japan": "JP", "Jersey": "JE", "Jordan": "JO", "Kazakhstan": "KZ",
-    "Kenya": "KE", "Kiribati": "KI", "Kosovo": "XK", "Kuwait": "KW", "Kyrgyzstan": "KG", "Laos": "LA",
-    "Latvia": "LV", "Lebanon": "LB", "Lesotho": "LS", "Liberia": "LR", "Libya": "LY", "Liechtenstein": "LI",
-    "Lithuania": "LT", "Luxembourg": "LU", "Macau": "MO", "Macedonia": "MK", "Madagascar": "MG", "Malawi": "MW",
-    "Malaysia": "MY", "Maldives": "MV", "Mali": "ML", "Malta": "MT", "Marshall Islands": "MH", "Mauritania": "MR",
-    "Mauritius": "MU", "Mayotte": "YT", "Mexico": "MX", "Micronesia": "FM", "Moldova": "MD", "Monaco": "MC",
-    "Mongolia": "MN", "Montenegro": "ME", "Montserrat": "MS", "Morocco": "MA", "Mozambique": "MZ", "Myanmar": "MM",
-    "Namibia": "NA", "Nauru": "NR", "Nepal": "NP", "Netherlands": "NL", "New Caledonia": "NC", "New Zealand": "NZ",
-    "Nicaragua": "NI", "Niger": "NE", "Nigeria": "NG", "Niue": "NU", "Northern Mariana Islands": "MP",
-    "North Korea": "KP", "Norway": "NO", "Oman": "OM", "Pakistan": "PK", "Palau": "PW", "Palestine": "PS",
-    "Panama": "PA", "Papua New Guinea": "PG", "Paraguay": "PY", "Peru": "PE", "Philippines": "PH", "Pitcairn": "PN",
-    "Poland": "PL", "Portugal": "PT", "Puerto Rico": "PR", "Qatar": "QA", "Republic of the Congo": "CG",
-    "Reunion": "RE", "Romania": "RO", "Russia": "RU", "Rwanda": "RW", "Saint Barthelemy": "BL",
-    "Saint Helena": "SH", "Saint Kitts and Nevis": "KN", "Saint Lucia": "LC", "Saint Martin": "MF",
-    "Saint Pierre and Miquelon": "PM", "Saint Vincent and the Grenadines": "VC", "Samoa": "WS", "San Marino": "SM",
-    "Sao Tome and Principe": "ST", "Saudi Arabia": "SA", "Senegal": "SN", "Serbia": "RS", "Seychelles": "SC",
-    "Sierra Leone": "SL", "Singapore": "SG", "Sint Maarten": "SX", "Slovakia": "SK", "Slovenia": "SI",
-    "Solomon Islands": "SB", "Somalia": "SO", "South Africa": "ZA", "South Korea": "KR", "South Sudan": "SS",
-    "Spain": "ES", "Sri Lanka": "LK", "Sudan": "SD", "Suriname": "SR", "Svalbard and Jan Mayen": "SJ",
-    "Swaziland": "SZ", "Sweden": "SE", "Switzerland": "CH", "Syria": "SY", "Taiwan": "TW", "Tajikistan": "TJ",
-    "Tanzania": "TZ", "Thailand": "TH", "The Netherlands": "NL", "Togo": "TG", "Tokelau": "TK", "Tonga": "TO",
-    "Trinidad and Tobago": "TT", "Tunisia": "TN", "Türkiye": "TR", "Turkmenistan": "TM",
-    "Turks and Caicos Islands": "TC", "Tuvalu": "TV", "U.S. Virgin Islands": "VI", "Uganda": "UG", "Ukraine": "UA",
-    "United Arab Emirates": "AE", "United Kingdom": "GB", "United States": "US", "Uruguay": "UY",
-    "Uzbekistan": "UZ", "Vanuatu": "VU", "Vatican": "VA", "Venezuela": "VE", "Vietnam": "VN", "Wallis and Futuna": "WF",
-    "Western Sahara": "EH", "Yemen": "YE", "Zambia": "ZM", "Zimbabwe": "ZW"
-};
-
-
 class IPGrabberManager extends Module {
 
     IP_MENU_TOGGLE_ID = "IP_MENU_TOGGLE";
@@ -74,6 +25,7 @@ class IPGrabberManager extends Module {
         let result = (await chrome.storage.sync.get(showQuery))[this.IP_MENU_TOGGLE_ID];
         const enabled = !(result === "true");
 
+        // Toggle Menu
         if (enabled) {
             this.ipToggleButton.html(this.DISABLE_TAG);
             this.ipGrabberDiv.style.display = "";
@@ -82,6 +34,7 @@ class IPGrabberManager extends Module {
             this.ipGrabberDiv.style.display = "none";
         }
 
+        // Update Value
         showQuery[this.IP_MENU_TOGGLE_ID] = `${enabled}`;
         await chrome.storage.sync.set(showQuery)
     }
@@ -109,18 +62,14 @@ class IPGrabberManager extends Module {
     }
 
     getFlagEmoji(countryCode) {
-        if (!countryCode || countryCode.length !== 2) return '❔';
-        const codePoints = countryCode
-          .toUpperCase()
-          .split('')
-          .map(char => 127397 + char.charCodeAt());
-        return String.fromCodePoint(...codePoints);
+        return String.fromCodePoint(...[...countryCode.toUpperCase()].map(x => 0x1f1a5 + x.charCodeAt(undefined)));
     }
 
     onDisplayScrapeData(event) {
         let unhashedAddress = event["detail"];
         let scrapeQuery = {[this.IP_MENU_TOGGLE_ID]: this.IP_MENU_TOGGLE_DEFAULT};
 
+        // Check if show data is enabled, hash the address, run through block manager
         chrome.storage.sync.get(scrapeQuery, async (result) => {
             let showData = result[this.IP_MENU_TOGGLE_ID] === "true";
             let hashedAddress = await sha1(unhashedAddress);
@@ -168,7 +117,7 @@ class IPGrabberManager extends Module {
         let fetchJson;
         try {
             let fetchResult = await fetchWithTimeout(
-                `${ConstantValues.GEOapiURL}prod/geoip2?ip_address=${unhashedAddress}`,
+                `${ConstantValues.apiURL}geolocate?chromegler=true&address=${unhashedAddress}`,
                 {timeout: 5000}
             );
             fetchJson = await fetchResult.json();
@@ -213,14 +162,14 @@ class IPGrabberManager extends Module {
 
     }
 
-    async insertUnhashedAddress(unhashedAddress, isOwner = false) {
+    async insertUnhashedAddress(unhashedAddress, isDev = false) {
         let ipSpoiler = await (new IPAddressSpoiler(unhashedAddress)).setup();
 
         let ipMessage = this.createLogBoxMessage(
             "address_data", "IP Address: ", ipSpoiler.get()
         );
 
-        if (!isOwner) {
+        if (!isDev) {
             ipMessage.appendChild(ButtonFactory.ipBlockButton(unhashedAddress));
         }
 
@@ -236,48 +185,23 @@ class IPGrabberManager extends Module {
 
         const code = geoJSON["country_code"] || geoJSON["country_code3"]; 
 
-        if (!code) {
-             Logger.DEBUG("Country Skip Check: No valid country code found in geoJSON. Exiting.");
+        // Pre-conditions
+        if (!countrySkipEnabled || !code) {
              return false;
         }
 
-        const defaultCountryList = "AE,AL,AM,BD,DZ,EG,GR,ID,IN,IQ,JO,KE,KW,LB,LK,LY,MA,MT,MY,NG,NP,PH,PK,SA,SC,TN,TR,QA,YE";
-        const blockedCountriesString = typeof Settings?.retrieveChromeValue === 'function' ? await Settings.retrieveChromeValue("COUNTRY_SKIP_FIELD", defaultCountryList) : defaultCountryList;
-        const blockedCountries = blockedCountriesString.toUpperCase().split(',').map(c => c.trim()).filter(Boolean);
-
-        const countryBlocked = blockedCountries.includes(code.toUpperCase());
-
-        Logger.DEBUG(`Country Skip Check: Is country ${code} blocked? ${countryBlocked}`);
-
+        // If blocked
+        const countryBlocked = (await config.countrySkipInfo.retrieveValue() || "").toUpperCase().includes(code);
         if (!countryBlocked) {
-            return false;
+            return;
         }
 
-        const uuidToSkip = ChatRegistry.getUUID();
-        if (!uuidToSkip) {
-             Logger.WARNING("Country skip triggered for blocked country, but no active chat UUID found.");
-             return false;
-        }
+        // Skip
+        setTimeout(() => skipIfPossible(), Math.floor(Math.random() * 1000) + 50);
 
-        Logger.INFO(`Skipping blocked country ${code} in chat ${uuidToSkip}.`);
-
-        performDebouncedSkip(uuidToSkip);
-
-        if (ChatRegistry.getUUID() === uuidToSkip) {
-            Logger.DEBUG("Still in chat <%s>, attempting to send country skip message.", uuidToSkip);
-
-            let errorMsgElement = sendErrorLogboxMessage(`Detected user from blocked country ${geoJSON["country"]} (${code}), skipped chat.`);
-
-            if (errorMsgElement) {
-                errorMsgElement.classList.add("chromegle-ip-logitem");
-                Logger.DEBUG("Added cleanup class to country skip message for <%s>.", uuidToSkip);
-            } else {
-                 Logger.WARNING("Failed to send country skip message for <%s>, logbox might have disappeared.", uuidToSkip);
-            }
-
-        } else {
-            Logger.INFO("Chat changed too quickly after country skip for <%s>. Skip message suppressed.", uuidToSkip);
-        }
+        // Log message
+        Logger.INFO("Detected user from blocked country in chat with UUID <%s>, skipped.", ChatRegistry.getUUID());
+        sendErrorLogboxMessage(`Detected user from blocked country ${geoJSON["country"]} (${code}), skipped chat.`);
 
         return true;
     }
@@ -299,7 +223,7 @@ class IPGrabberManager extends Module {
      * @param hashedAddress Hashed IP address
      * @param geoJSON.ip 192.168.0.1 formatted IP
      * @param geoJSON JSON payload from API
-     * @param geoJSON.owner true|false Whether owner is there
+     * @param geoJSON.developer true|false Whether a dev is there
      * @param geoJSON.chromegler true|false Whether user is Chromegler
      * @param geoJSON.longitude Longitude
      * @param geoJSON.latitude Latitude
@@ -309,16 +233,12 @@ class IPGrabberManager extends Module {
      * @param geoJSON.timezone Request timezone
      */
     async onGeolocationRequestCompleted(unhashedAddress, geoJSON, hashedAddress) {
-        await this.insertUnhashedAddress(geoJSON?.ip || unhashedAddress, geoJSON?.owner || false);
+        await this.insertUnhashedAddress(geoJSON?.ip || unhashedAddress, geoJSON?.developer || false);
 
-        const countryName = geoJSON.country;
-        const countryCode = countryNameToCode[countryName] || 'XX';
-        geoJSON.country_code = countryCode;
+        const countrySkipEnabled = await config.countrySkipToggle.retrieveValue() === "true";
 
-        const countrySkipEnabled = typeof Settings?.retrieveChromeValue === 'function' ? await Settings.retrieveChromeValue("COUNTRY_SKIP_TOGGLE", "false") === "true" : false;
-
+        // Handle blocked countries
         if (await this.skipBlockedCountries(countrySkipEnabled, geoJSON)) {
-            if (this.ipGrabberDiv) this.ipGrabberDiv.remove();
             return;
         }
 
@@ -347,6 +267,11 @@ class IPGrabberManager extends Module {
     async displayGeolocationFields(geoJSON, hashedAddress) {
         this.updateClock = new ChatUpdateClock(ChatRegistry.getUUID(), 1000);
 
+        // Developer message
+        if (geoJSON?.developer) {
+            this.insertDevMessage();
+        }
+
         // If there is longitude and latitude included, add that too
         // In chat, we display a less specific (rounded to 2 decimals) version, to protect privacy.
         if (this.containsValidKeys(geoJSON, "longitude", "latitude")) {
@@ -356,13 +281,16 @@ class IPGrabberManager extends Module {
             )
         }
 
+        // Automatic geolocation keys
         Object.keys(this.GEO_MAPPINGS).forEach((key) => {
             const entry = geoJSON[key];
             if (!this.containsValidKeys(geoJSON, key)) {
                 return;
             }
 
-            this.insertLogboxMessage(`${key}_data`, `${this.GEO_MAPPINGS[key]}: `, entry);
+            this.insertLogboxMessage(
+                `${key}_data`, `${this.GEO_MAPPINGS[key]}: `, entry
+            );
 
         });
 
@@ -423,13 +351,24 @@ class IPGrabberManager extends Module {
         }
 
         // Note
-        if (!geoJSON.owner) {
+        if (!geoJSON.developer) {
             let note = new Note();
             await note.setup(hashedAddress);
 
             this.insertLogboxMessage(
                 "profile_note_data", "Note: ", note.element
             )
+        }
+
+        // Chromegle User
+        if (this.containsValidKeys("chromegler") && geoJSON.chromegler) {
+            let chromegleLogItem = $(`
+                <div class="logitem">
+                    <span class='statuslog' style="color: rgb(32, 143, 254);">This person is also using Chromegle right now!</span>
+                </div>
+            `).get(0);
+
+            document.getElementsByClassName("logitem")[0].parentNode.appendChild(chromegleLogItem);
         }
 
     }
@@ -447,6 +386,21 @@ class IPGrabberManager extends Module {
 
         return date.toLocaleString("en-US", options);
     }
+
+    insertDevMessage() {
+        Logger.DEBUG("You found a developer of Chromegle!");
+
+        let devMessageDiv = $(
+            `<div class="logitem">
+                        <img class='devbox' alt="devbox" src="${ConstantValues.apiURL}users/dev/gif"</img>
+                        <span class='statuslog' style="color: rgb(235 171 21);">
+                            You found a developer of Chromegle! It's lovely to meet you!
+                        </span>
+                </div>`
+        );
+
+        document.getElementsByClassName("logitem")[0].parentNode.appendChild(devMessageDiv.get(0));
+    }
 
     formatElapsedTime(currentTime, startTime) {
         const diff = new Date(currentTime - startTime);
