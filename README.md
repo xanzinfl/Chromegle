@@ -1,6 +1,6 @@
 Chromegle
 ==================
-A Javascript Chrome (and Opera) Extension for Uhmegle with partial support for Umingle, certified for Chrome 137 and above. 
+A Javascript Chrome (and Opera) Extension for Uhmegle with partial support for Umingle, certified for Chrome 88 and above. 
 
  ![Issues](https://img.shields.io/github/issues/xanzinfl/Chromegle) ![Forks](https://img.shields.io/github/forks/xanzinfl/Chromegle) ![Stars](https://img.shields.io/github/stars/xanzinfl/Chromegle) [![Support Server](https://img.shields.io/discord/983304229231923270.svg?color=7289da&logo=discord&style=flat-square)](https://discord.gg/422p3anb3T)
 
