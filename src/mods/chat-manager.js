@@ -14,7 +14,7 @@ class ChatManager extends Module {
 
     onChatStarted(event) {
 
-        let logItems = document.getElementsByClassName("information");
+        let logItems = document.getElementsByClassName("countryInfo");
 
         for (let log of logItems) {
             log.classList.add("tip-message");
