@@ -47,14 +47,13 @@ Manual installation is fairly easy thanks to Chrome's great developer support:
 ```
 
 # Changelog
-## v4.7.2
+## Recent Changes
 ### Whats New?
+- Face Detection Bypass - No more pesky "please show your face" popup
 - Weve brought back the original api for more accurate location info
-- Added an update notification
 
 ### FIXES
-- Fixed tip message
-- User count is now more accurate/responsive
+- Fixed Topic Sync
 - Country-skip is now quicker
 
 -# Enjoy chatting! Please report any bugs in the discord!
