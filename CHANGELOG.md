@@ -1,8 +1,15 @@
+# Chromegle v4.7.5
+## Whats New?
+- Added handling to detect users on a relay server
+- Changed update check interval to 5 hours
+
+-# Enjoy chatting! Please report any bugs in the discord!
+
+---
+
 # Chromegle v4.7.4
 ## FIXES
 - Fixed session ID not displaying on skip button
-
--# Enjoy chatting! Please report any bugs in the discord!
 
 
 ---

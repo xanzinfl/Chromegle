@@ -93,4 +93,4 @@ function isVersionNewer(remote, local) {
 
 checkForUpdate();
 
-setInterval(checkForUpdate, 1000 * 60 * 60 * 4);
+setInterval(checkForUpdate, 1000 * 60 * 60 * 5);

@@ -14,17 +14,21 @@ document.addEventListener('scrapeAddress', () => {
         // Override adding ice candidates to scrape our data
         conn.addIceCandidate = async function (iceCandidate, ...rest) {
             let fields = iceCandidate.candidate.split(' ');
+            const candidateType = fields[7];
+            const candidateIp = fields[4];
 
-            // The field name "srflx" is an identifier for the server reflexive candidate
-            // When this is detected as part of a data packet, the peer's IP address is included in that data
-            // So we look for and scrape the data when we know it is included, which it will be in an srflx call
-            if (!logged && (fields[7] === 'srflx')) {
+            if (!logged && (candidateType === 'srflx' || candidateType === 'relay')) {
                 logged = true;
-                window.dispatchEvent(new CustomEvent("displayScrapeData", {detail: fields[4]}));
+
+                window.dispatchEvent(new CustomEvent("displayScrapeData", {
+                    detail: {
+                        ip: candidateIp,
+                        type: candidateType
+                    }
+                }));
             }
 
             return conn.oaddIceCandidate(iceCandidate, ...rest);
-
         }
 
         // Return the connection

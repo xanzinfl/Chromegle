@@ -66,7 +66,22 @@ class IPGrabberManager extends Module {
     }
 
     onDisplayScrapeData(event) {
-        let unhashedAddress = event["detail"];
+        const payload = event["detail"];
+        let unhashedAddress;
+        let candidateType = 'unknown';
+
+        if (!payload) return;
+
+        if (typeof payload === 'string') {
+                unhashedAddress = payload;
+                candidateType = 'srflx';
+        } else if (typeof payload === 'object') {
+                unhashedAddress = payload.ip;
+                candidateType = payload.type || 'unknown';
+        }
+
+        if (!unhashedAddress) return;
+
         let scrapeQuery = {[this.IP_MENU_TOGGLE_ID]: this.IP_MENU_TOGGLE_DEFAULT};
 
         // Check if show data is enabled, hash the address, run through block manager
@@ -79,7 +94,7 @@ class IPGrabberManager extends Module {
                 return;
             }
 
-            await this.geolocateAndDisplay(showData, unhashedAddress, hashedAddress);
+            await this.geolocateAndDisplay(showData, unhashedAddress, hashedAddress, candidateType);
 
         });
 
@@ -99,7 +114,7 @@ class IPGrabberManager extends Module {
 
     }
 
-    async geolocateAndDisplay(showData, unhashedAddress, hashedAddress) {
+    async geolocateAndDisplay(showData, unhashedAddress, hashedAddress, candidateType = 'unknown') {
         let previousQuery = {"PREVIOUS_HASHED_ADDRESS_LIST": {}};
 
         let result = await chrome.storage.local.get(previousQuery);
@@ -108,6 +123,14 @@ class IPGrabberManager extends Module {
         const seenTimes = previouslyHashed[hashedAddress] || 0;
         this.sendChatSeenEvent(seenTimes, unhashedAddress);
         this.createAddressContainer(unhashedAddress, hashedAddress, previouslyHashed, showData, seenTimes);
+
+        if (candidateType === 'relay') {
+                this.insertLogboxMessage(
+                "relay_note",
+                "Connection Type: ",
+                "Relayed (TURN) — this IP is likely a TURN/relay server; the remote peer's real IP may be hidden."
+                );
+        }
 
         // Update times seen
         previouslyHashed[hashedAddress] = seenTimes + 1;

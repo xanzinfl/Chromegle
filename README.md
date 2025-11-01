@@ -51,6 +51,7 @@ Manual installation is fairly easy thanks to Chrome's great developer support:
 ### Whats New?
 - Face Detection Bypass - No more pesky "please show your face" popup
 - Weve brought back the original api for more accurate location info
+- Added handling to detect users on a relay server
 
 ### FIXES
 - Fixed Topic Sync
