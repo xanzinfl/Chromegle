@@ -1,9 +1,17 @@
+# Chromegle v4.7.4
+## FIXES
+- Fixed session ID not displaying on skip button
+
+-# Enjoy chatting! Please report any bugs in the discord!
+
+
+---
+
+
 # Chromegle v4.7.3
 ## FIXES
 - Fixed Region Display
 - Fixed tip message
-
--# Enjoy chatting! Please report any bugs in the discord!
 
 
 ---

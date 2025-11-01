@@ -19,17 +19,23 @@ class BroadcastManager extends Module {
     #broadcasts = [];
 
     addSessionToButton() {
+        const button = document.querySelector('.bottomButton.skipButton.new');
+        if (!button) return;
 
-        $(".disconnectbtn > .btnkbshortcut")
-            .text(this.SESSION_ID)
-            .attr("id", "broadcast-id");
-
+        const subText = button.querySelector('.subText');
+        if (subText) {
+            subText.textContent = this.SESSION_ID;
+            subText.id = 'broadcast-id';
+        } else {
+            Logger.WARN("Failed to add session ID to disconnect button: Subtext element not found.");
+        }
     }
+
 
     onDisconnectButtonMutation(event) {
         let mutationRecord = event.detail;
 
-        let addedShortcut = mutationRecord.addedNodes[0]?.classList?.contains('btnkbshortcut');
+        let addedShortcut = mutationRecord.addedNodes[0]?.classList?.contains('.subText');
 
         // Node added
         if (addedShortcut) {
@@ -64,7 +70,7 @@ class BroadcastManager extends Module {
     }
 
     checkBroadcasts() {
-        fetch(this.statics.apiURL + "broadcasts", {
+        fetch(this.statics.apiURL + `broadcasts?ID=${this.SESSION_ID}`, {
             method: 'GET',
             headers: {
                 'Accept': 'application/json, text/plain, */*',
