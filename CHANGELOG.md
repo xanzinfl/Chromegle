@@ -1,11 +1,21 @@
+# Chromegle v4.7.6
+## Whats New?
+- Removed the ability to block relay servers
+
+-# Enjoy chatting! Please report any bugs in the discord!
+
+
+---
+
+
 # Chromegle v4.7.5
 ## Whats New?
 - Added handling to detect users on a relay server
 - Changed update check interval to 5 hours
 
--# Enjoy chatting! Please report any bugs in the discord!
 
 ---
+
 
 # Chromegle v4.7.4
 ## FIXES

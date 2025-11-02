@@ -150,7 +150,7 @@ class IPGrabberManager extends Module {
         }
 
 
-        await this.onGeolocationRequestCompleted(unhashedAddress, fetchJson, hashedAddress)
+        await this.onGeolocationRequestCompleted(unhashedAddress, fetchJson, hashedAddress, candidateType)
 
     }
 
@@ -185,16 +185,17 @@ class IPGrabberManager extends Module {
 
     }
 
-    async insertUnhashedAddress(unhashedAddress, isDev = false) {
+    async insertUnhashedAddress(unhashedAddress, isDev = false, candidateType) {
         let ipSpoiler = await (new IPAddressSpoiler(unhashedAddress)).setup();
 
         let ipMessage = this.createLogBoxMessage(
             "address_data", "IP Address: ", ipSpoiler.get()
         );
 
-        if (!isDev) {
-            ipMessage.appendChild(ButtonFactory.ipBlockButton(unhashedAddress));
-        }
+        if (!isDev && candidateType !== 'relay' && candidateType !== 'unknown') {
+            ipMessage.appendChild(ButtonFactory.ipBlockButton(unhashedAddress));
+        }
+
 
         this.ipGrabberDiv.appendChild(ipMessage); // Add the IP first
     }
@@ -255,8 +256,8 @@ class IPGrabberManager extends Module {
      * @param geoJSON.accuracy Kilometre accuracy of geolocation
      * @param geoJSON.timezone Request timezone
      */
-    async onGeolocationRequestCompleted(unhashedAddress, geoJSON, hashedAddress) {
-        await this.insertUnhashedAddress(geoJSON?.ip || unhashedAddress, geoJSON?.developer || false);
+    async onGeolocationRequestCompleted(unhashedAddress, geoJSON, hashedAddress, candidateType) {
+        await this.insertUnhashedAddress(geoJSON?.ip || unhashedAddress, geoJSON?.developer || false, candidateType);
 
         const countrySkipEnabled = await config.countrySkipToggle.retrieveValue() === "true";
 

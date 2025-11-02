@@ -4,7 +4,7 @@
   "author": "github.com/xanzinfl",
   "homepage_url": "https://chromegle.org/",
   "manifest_version": 3,
-  "version": "4.7.5",
+  "version": "4.7.6",
   "icons": {
     "16": "public/images/IconLogo.png",
     "48": "public/images/IconLogo.png",
