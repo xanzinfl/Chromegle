@@ -1,8 +1,18 @@
+# Chromegle v4.7.7
+## Whats New?
+- Fixed Themes!
+- Fixed tip message covering country name
+- Added a status page for the API
+
+-# Enjoy chatting! Please report any bugs in the discord!
+
+
+---
+
+
 # Chromegle v4.7.6
 ## Whats New?
 - Removed the ability to block relay servers
-
--# Enjoy chatting! Please report any bugs in the discord!
 
 
 ---

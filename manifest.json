@@ -4,7 +4,7 @@
   "author": "github.com/xanzinfl",
   "homepage_url": "https://chromegle.org/",
   "manifest_version": 3,
-  "version": "4.7.6",
+  "version": "4.7.7",
   "icons": {
     "16": "public/images/IconLogo.png",
     "48": "public/images/IconLogo.png",
@@ -61,8 +61,7 @@
         "src/main.js"
       ],
       "matches": [
-        "*://*.uhmegle.com/*",
-        "*://*.umingle.com/*"
+        "*://*.uhmegle.com/*"
       ]
     }
   ],
@@ -82,8 +81,7 @@
         "/public/images/SettingsButton.png"
       ],
       "matches": [
-        "*://*.uhmegle.com/*",
-        "*://*.umingle.com/*"
+        "*://*.uhmegle.com/*"
       ]
     }
   ],
@@ -93,8 +91,7 @@
   ],
   "externally_connectable": {
     "matches": [
-      "*://*.uhmegle.com/*",
-      "*://*.umingle.com/*"
+      "*://*.uhmegle.com/*"
     ]
   }
 }

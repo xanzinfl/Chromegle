@@ -1,8 +1,11 @@
 Chromegle
 ==================
-A Javascript Chrome (and Opera) Extension for Uhmegle with partial support for Umingle, certified for Chrome 88 and above. 
+A Javascript Chrome (and Opera) Extension for Uhmegle, certified for Chrome 88 and above. 
 
  ![Issues](https://img.shields.io/github/issues/xanzinfl/Chromegle) ![Forks](https://img.shields.io/github/forks/xanzinfl/Chromegle) ![Stars](https://img.shields.io/github/stars/xanzinfl/Chromegle) [![Support Server](https://img.shields.io/discord/983304229231923270.svg?color=7289da&logo=discord&style=flat-square)](https://discord.gg/422p3anb3T)
+ 
+<a target="_blank" href="https://status.bloodmoonstudios.xyz/status/chromegle"><img src="https://status.bloodmoonstudios.xyz/api/badge/39/uptime?labelPrefix=API+" /></a><a target="_blank" href="https://status.bloodmoonstudios.xyz/status/chromegle"><img src="https://status.bloodmoonstudios.xyz/api/badge/39/status" /></a> 
+
 
 # Table of Contents
 - [Features](#features)
@@ -18,6 +21,7 @@ A Javascript Chrome (and Opera) Extension for Uhmegle with partial support for U
 - Report Detection - NEW
 - Watermark Removal - NEW
 - Country Blocker - Fixed
+- Theme Settings - Fixed
 - Geolocation
 - Calltime Counter
 - Voice Commands eg. omegle skip
@@ -32,7 +36,6 @@ A Javascript Chrome (and Opera) Extension for Uhmegle with partial support for U
 ## Broken/Untested
 - ~~Sexual Filter~~
 - ~~Profanity Filter~~
-- ~~Theme Settings~~
 
 # Installation
 
@@ -54,6 +57,7 @@ Manual installation is fairly easy thanks to Chrome's great developer support:
 - Added handling to detect users on a relay server
 
 ### FIXES
+- Fixed Theme Manager
 - Fixed Topic Sync
 - Country-skip is now quicker
 

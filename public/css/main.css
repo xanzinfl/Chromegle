@@ -94,7 +94,7 @@ html {
     border: inherit;
     margin-right: inherit;
     background-size: inherit;
-    height: inherit;
+    /* height: inherit; */
     width: inherit;
 }
 
@@ -651,14 +651,6 @@ p.tip-message {
 }
 
 
-#abovevideosexybtn {
-    border-top-left-radius: 8px !important;
-    border-top-right-radius: 0px !important;
-    border-bottom-right-radius: 0px !important;
-    border-bottom-left-radius: 0px !important;
-}
-
-
 .statuslog label {
     color: inherit;
 }
@@ -860,11 +852,8 @@ MODAL FALLBACK END
     flex-direction: column;
 }
 
-/*
-COLLEGE BUTTON
- */
-#topicsettingscontainer a[href:'javascript:'] > span:first-child {
-    display: none;
+#mainMessages .tempMessage {
+    color: #208ffe !important;
 }
 
 .videoContainer.remote .mWmark { 

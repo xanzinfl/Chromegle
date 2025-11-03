@@ -15,7 +15,7 @@ class ThemeManager extends Module {
         MicroModal.init();
 
         // Set the theme mode
-        this.#stylesheet = this.#getStylesheet();
+        this.#stylesheet = this.#injectStylesheet();
 
         // Initialize overrides
         this.OverrideManager.initialize();
@@ -31,8 +31,13 @@ class ThemeManager extends Module {
 
     }
 
-    #getStylesheet() {
-        return document.querySelector('[href*="/static/style.css"]') || document.createElement("link");
+    #injectStylesheet() {
+        let sheet = document.createElement("link");
+        sheet.rel = "stylesheet";
+        sheet.id = "customStylesheet";
+        document.head.appendChild(sheet);
+
+        return sheet;
     }
 
     showPage() {
@@ -61,7 +66,7 @@ class OverrideManager {
     initialize() {
         [
             this.#overrideBody,
-            this.#overrideLanguage,
+            this.#overrideDarkMode,
             this.#overrideLogo,
             this.#overrideTaglineInsertMenu,
             this.#overrideHomePageText,
@@ -99,12 +104,14 @@ class OverrideManager {
 
     #overrideBody = () => {
         $("body").css("min-height", "").css("top", "")
+        localStorage.setItem("darkMode", "false");
     }
 
-    #overrideLanguage = () => {
-        $(".goog-te-gadget-simple").removeClass("goog-te-gadget-simple").addClass("select-language-button");
+    #overrideDarkMode = () => {
+        $("body > header > div > label").remove();
 
-    };
+    }
+
     #overrideLinks = () => $("#feedback").remove();
     #overrideLogo = () => {
         $("#logo > img").replaceWith(ButtonFactory.homeButton)

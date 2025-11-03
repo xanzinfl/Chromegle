@@ -14,11 +14,10 @@ class ChatManager extends Module {
 
     onChatStarted(event) {
 
-        let logItems = document.getElementsByClassName("countryInfo");
-
-        for (let log of logItems) {
-            log.classList.add("tip-message");
-            log.innerHTML = `Thanks for using Chromegle! ${ConstantValues.getHelpfulTip()}`;
+        const info = document.getElementById("information");
+        if (info) {
+            const [, secondLine] = info.innerHTML.split("<br>");
+            info.innerHTML = `Thanks for using Chromegle! ${ConstantValues.getHelpfulTip()}<br>${secondLine || ""}`;
         }
 
         if (event["detail"]["isVideoChat"]) {

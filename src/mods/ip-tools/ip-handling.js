@@ -202,7 +202,7 @@ class IPGrabberManager extends Module {
 
     async onGeolocationRequestError(unhashedAddress) {
         await this.insertUnhashedAddress(unhashedAddress);
-        sendErrorLogboxMessage("Geolocation failed, try again later or contact us through our discord!");
+        sendErrorLogboxMessage(`Geolocation failed, check the <a class="StatusButton" href='${ConstantValues.websiteURL}' target="_blank">Status Page</a> or contact us through our <a class="DiscordButton" href='${ConstantValues.discordURL}' target="_blank">Discord Server</a>!`);
     }
 
     async skipBlockedCountries(countrySkipEnabled, geoJSON) {

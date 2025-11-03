@@ -1,5 +1,5 @@
 let ConstantValues = {
-    websiteURL: "https://chromegle.net",
+    websiteURL: "https://status.bloodmoonstudios.xyz/status/chromegle",
     discordURL: "https://discord.gg/422p3anb3T",
     githubURL: "https://github.com/xanzinfl/chromegle",
     apiURL: "https://api.bloodmoonstudios.xyz/",
