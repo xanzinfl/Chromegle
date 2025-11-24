@@ -6,7 +6,7 @@ A Javascript Chrome (and Opera) Extension for Uhmegle, certified for Chrome 88 a
  
 <a target="_blank" href="https://status.bloodmoonstudios.xyz/status/chromegle"><img src="https://status.bloodmoonstudios.xyz/api/badge/39/uptime?labelPrefix=API+" /></a><a target="_blank" href="https://status.bloodmoonstudios.xyz/status/chromegle"><img src="https://status.bloodmoonstudios.xyz/api/badge/39/status" /></a> 
 
-> NOTE: I am aware that uhmegles homepage ridirects you to umingle, i am working on updating chromegle for umingle but until its complete, there is a way around it. To continue using uhmegle click [Here](https://uhmegle.com/video)
+> NOTE: I am aware that Uhmegle's homepage redirects to Umingle, and I am working on updating Chromegle for Umingle. However, until the update is complete, there is a way around it. To continue using Uhmegle, [Click Here](https://uhmegle.com/video/).
 
 # Table of Contents
 - [Features](#features)
