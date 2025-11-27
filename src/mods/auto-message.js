@@ -73,9 +73,9 @@ class AutoMessageManager extends Module {
             if (message.length === 0) {
                 Logger.DEBUG("[AutoMessageManager] Sending Message")
                 
-                const sendButton = document.querySelector('.sendButton');
+                const sendButton = document.querySelector('.sb');
                 setTimeout(() => {
-                    sendButton.dispatchEvent(new MouseEvent('mousedown'));
+                    sendButton.click();
                     AutoMessageManager.cancelMessage(interval);
                 }, sendDelay);
                 return;

@@ -23,7 +23,6 @@ let Manifest;
          ChatRegistryManager,
          ChatManager,
          FilterManager,
-         ConfirmManager,
          AutoMessageManager,
          ReconnectManager,
          IPGrabberManager,

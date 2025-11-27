@@ -852,8 +852,12 @@ MODAL FALLBACK END
     flex-direction: column;
 }
 
-#mainMessages .tempMessage {
+#mainMessages .tempMessage, .onlineText, #countNumber {
     color: #208ffe !important;
+}
+
+.sb {
+    background-color: #208ffe !important;
 }
 
 .videoContainer.remote .mWmark { 

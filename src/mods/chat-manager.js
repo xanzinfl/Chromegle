@@ -45,7 +45,7 @@ class ChatManager extends Module {
 
         event["detail"].innerHTML = (`
             <p class="statuslog">
-                Chromegle: Unable to connect to Uhmegle. You are likely banned</a>
+                Chromegle: Unable to connect to Uhmingle. You are likely banned</a>
                 due to a VPN or proxy, try a different one to continue.
             </p>
         `);

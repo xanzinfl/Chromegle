@@ -100,7 +100,7 @@ body, header, html, .home .card {
 /*
 Secondary Colour BACKGROUND
  */
-.home .mainContent, .skipButton.stop, .skipButton, .sendButton, .chatmsg, 
+.home .mainContent, .skipButton.stop, .skipButton, .chatmsg, 
 .rightBox, #localVideo, #remoteVideo, #videoContainer.remote,
 .inputContainer.outlined, .messageInput {
     background: rgba(54, 57, 63, 255);
@@ -115,9 +115,9 @@ Secondary Colour BACKGROUND
 /*
 Primary Colour TEXT
  */
-.home .mainContent, #mainMessages.messages, .sendButton > div.mainText, .chatmsg:focus,
+.home .mainContent, #mainMessages.messages, .chatmsg:focus,
  .logitem, textarea, textarea:disabled, .videochat, .tip-message, .home .card .tag,
- .controlwrapper, .videochat, .videochat .skipButton, .information, .rules, .countryInfo {
+ .controlwrapper, .videochat, .videochat .skipButton, .information, .rules, .countryInfo, .matchingInterests, .disconnectMessage  {
     color: #d2d2d2 !important;
 }
 
@@ -167,7 +167,7 @@ body {
 }
 
 .skipButton.new {
-    background: #409ffe;
+    background: #409ffe !important;
     background-image: -o-linear-gradient(top, #80c0ff 0, #017ffe 100%);
     background-image: -moz-linear-gradient(top, #80c0ff 0, #017ffe 100%);
     background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#80c0ff), to(#017ffe));
@@ -181,12 +181,6 @@ body {
     font-weight: bold;
     background: transparent;
     color: #ff4444 !important;
-}
-
-.sendButton {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-    font-size: 1em;
-    border: 0 none;
 }
 
 .chatmsg {
@@ -255,24 +249,6 @@ body {
 
 textarea:focus {
     outline: 0
-}
-
-#localVideo {
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    border-bottom-left-radius: .5em;
-    -moz-border-radius-bottomleft: .5em;
-    -webkit-border-bottom-left-radius: .5em
-}
-
-#remoteVideo {
-    position: absolute;
-    left: 0;
-    top: 0;
-    border-top-left-radius: .5em;
-    -moz-border-radius-topleft: .5em;
-    -webkit-border-top-left-radius: .5em
 }
 
 #localVideo, #remoteVideo {

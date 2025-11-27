@@ -1,10 +1,10 @@
 {
-  "name": "Chromegle Reborn - Uhmegle IP & Client",
-  "description": "Elevate your Uhmegle experience with IP information, automation and other general improvements.",
+  "name": "Chromegle Reborn - Umingle IP & Client",
+  "description": "Elevate your Umingle experience with IP information, automation and other general improvements.",
   "author": "github.com/xanzinfl",
   "homepage_url": "https://chromegle.org/",
   "manifest_version": 3,
-  "version": "4.7.7",
+  "version": "5.0.0",
   "icons": {
     "16": "public/images/IconLogo.png",
     "48": "public/images/IconLogo.png",
@@ -16,7 +16,7 @@
   },
   "content_scripts": [
     {
-      "matches": ["*://*.uhmegle.com/*"],
+      "matches": ["*://*.umingle.com/*"],
       "js": ["src/core/face-bypass.js"],
       "run_at": "document_start",
       "world": "MAIN"
@@ -42,7 +42,6 @@
         "src/mods/auto-reconnect.js",
         "src/mods/ip-tools/ip-handling.js",
         "src/mods/ip-tools/ip-blocking.js",
-        "src/mods/auto-confirm.js",
         "src/mods/sync-topics.js",
         "src/mods/filter-messages.js",
         "src/mods/auto-skip/timer-skip.js",
@@ -61,7 +60,7 @@
         "src/main.js"
       ],
       "matches": [
-        "*://*.uhmegle.com/*"
+        "*://*.umingle.com/*"
       ]
     }
   ],
@@ -81,7 +80,7 @@
         "/public/images/SettingsButton.png"
       ],
       "matches": [
-        "*://*.uhmegle.com/*"
+        "*://*.umingle.com/*"
       ]
     }
   ],
@@ -91,7 +90,7 @@
   ],
   "externally_connectable": {
     "matches": [
-      "*://*.uhmegle.com/*"
+      "*://*.umingle.com/*"
     ]
   }
 }

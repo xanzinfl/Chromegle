@@ -181,8 +181,7 @@ class ChatRegistryManager extends Module {
 
         if (
             el.id === "information" &&
-            el.closest("#mainMessages") == null &&
-            el.textContent.includes("You're now chatting with a random stranger")
+            el.textContent.includes("✨ You're now chatting with someone new")
         ) {
             if (!this.#isChatting) {
                 this.#isChatting = true;
@@ -203,7 +202,7 @@ class ChatRegistryManager extends Module {
         if (
             el.classList.contains("information") &&
             el.closest("#mainMessages") == null &&
-            el.textContent.includes("Looking for someone you can chat with...")
+            el.textContent.includes("Searching for someone to chat with...")
         ) {
             if (this.#isChatting) {
                 Logger.INFO("Chat Ended: UUID <%s>", this.getUUID());
