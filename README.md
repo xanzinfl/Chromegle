@@ -68,3 +68,10 @@ See also the list of [contributors](https://github.com/ChromegleApp/Chromegle/co
 ## License
 
 This project is licensed under the GPL-3.0 License - see the [LICENSE](LICENSE) file for details.
+
+## Images
+<img height="400" width="720" alt="Img1" src="./media/screenshots/Final1.png"/>
+<img height="400" width="720" alt="Img2" src="./media/screenshots/Final2.png"/>
+<img height="400" width="720" alt="Img3" src="./media/screenshots/Final3.png"/>
+<img height="400" width="720" alt="Img4" src="./media/screenshots/Final4.png" />
+<img height="400" width="720" alt="Img5" src="./media/screenshots/Final5.png" />
