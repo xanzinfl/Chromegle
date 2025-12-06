@@ -39,8 +39,10 @@ A Javascript Chrome (and Opera) Extension for Umingle, certified for Chrome 88 a
 # Installation
 
 Manual installation is fairly easy thanks to Chrome's great developer support:
+
+[Download The Extension](https://github.com/xanzinfl/Chromegle/releases/download/v5.0.0/Chromegle-v5.0.0.zip)
 ```
-1. Clone Repository on GitHub to Computer & Unzip
+1. Clone Repository or use the link above & Unzip
 2. Navigate to chrome://extensions/ web-page
 3. Enable "Developer Tools" on top-right of page
 4. Click "Load Unpacked" on chrome://extensions/
