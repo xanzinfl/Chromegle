@@ -307,7 +307,12 @@ const config = {
                 "value": response
             };
         }
-    })
+    }),
+    "streamerModeToggle": new ToggleEdit({
+        "elementName": "streamerModeToggle",
+        "storageName": "STREAMER_MODE_TOGGLE",
+        "default": "false"
+    }),
 
 }
 

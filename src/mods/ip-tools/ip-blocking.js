@@ -140,11 +140,16 @@ class IPBlockAPI {
 
     #blockList = new IPBlockList();
 
-    async skipBlockedAddress(address) {
+    async skipBlockedAddress(address, streamerModeEnabled) {
 
         let shouldSkip = await this.#blockList.isBlocked(address);
 
-        if (shouldSkip) {
+        if (shouldSkip && streamerModeEnabled === "true") {
+            Logger.INFO("Skipped blocked IP address <%s> with chat UUID <%s>", address, ChatRegistry.getUUID());
+            sendErrorLogboxMessage(`Skipped a blocked IP address`)
+                .appendChild(ButtonFactory.ipUnblockButton(address))
+            skipIfPossible();
+        } else if (shouldSkip) {
             Logger.INFO("Skipped blocked IP address <%s> with chat UUID <%s>", address, ChatRegistry.getUUID());
             sendErrorLogboxMessage(`Skipped the blocked IP address ${address}`)
                 .appendChild(ButtonFactory.ipUnblockButton(address))
@@ -156,10 +161,17 @@ class IPBlockAPI {
     }
 
     async unblockAddress(address, logInChat = true) {
+        let streamerModeEnabled = await config.streamerModeToggle.retrieveValue();
 
         // Make sure they want to unblock
-        if (!confirm(`Are you sure you want to unblock ${address}?`)) {
-            return false;
+        if (streamerModeEnabled === "true") {
+            if (!confirm(`Are you sure you want to unblock this stranger?`)) {
+                return false;
+            }
+        } else {
+            if (!confirm(`Are you sure you want to unblock ${address}?`)) {
+                return false;
+            }
         }
 
         // Check if blocked
@@ -173,7 +185,9 @@ class IPBlockAPI {
         Logger.INFO("Unblocked IP address <%s> in video chat", address);
 
         // Log in chat
-        if (logInChat) {
+        if (logInChat && streamerModeEnabled === "true") {
+            sendErrorLogboxMessage(`Unblocked a stranger in video chat.`);
+        } else if (logInChat) {
             sendErrorLogboxMessage(`Unblocked the IP address ${address} in video chat.`);
         }
 
@@ -185,6 +199,8 @@ class IPBlockAPI {
     }
 
     async blockAddress(address) {
+        let streamerModeEnabled = await config.streamerModeToggle.retrieveValue();
+
         // Check if blocked
         if (await this.#blockList.isBlocked(address)) {
             alert(`The IP address ${address} is already blocked in video chat!`);
@@ -196,11 +212,19 @@ class IPBlockAPI {
         Logger.INFO("Blocked IP address <%s> in video chat", address);
 
         // Skip if chatting
-        if (ChatRegistry.isChatting()) {
+        if (ChatRegistry.isChatting() && streamerModeEnabled === "true") {
+            skipIfPossible();
+            sendErrorLogboxMessage(`Blocked the stranger and skipped the current chat.`)
+                .appendChild(ButtonFactory.ipUnblockButton(address));
+        } else if (ChatRegistry.isChatting()) {
             skipIfPossible();
             sendErrorLogboxMessage(`Blocked the IP address ${address} and skipped the current chat.`);
         } else {
-            sendErrorLogboxMessage(`Blocked the IP address ${address} in video chat.`);
+            if (streamerModeEnabled === "true") {
+                sendErrorLogboxMessage(`Blocked a stranger in video chat.`);
+            } else {
+                sendErrorLogboxMessage(`Blocked the IP address ${address} in video chat.`);
+            }
         }
 
         // Switch with unblock button

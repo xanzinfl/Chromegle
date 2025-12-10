@@ -1,5 +1,5 @@
 class IPGrabberManager extends Module {
-
+ 
     IP_MENU_TOGGLE_ID = "IP_MENU_TOGGLE";
     IP_MENU_TOGGLE_DEFAULT = "true";
 
@@ -65,11 +65,12 @@ class IPGrabberManager extends Module {
         return String.fromCodePoint(...[...countryCode.toUpperCase()].map(x => 0x1f1a5 + x.charCodeAt(undefined)));
     }
 
-    onDisplayScrapeData(event) {
+    async onDisplayScrapeData(event) {
         const payload = event["detail"];
         let unhashedAddress;
         let candidateType = 'unknown';
-
+        let streamerModeEnabled = await config.streamerModeToggle.retrieveValue();
+        
         if (!payload) return;
 
         if (typeof payload === 'string') {
@@ -90,11 +91,11 @@ class IPGrabberManager extends Module {
             let hashedAddress = await sha1(unhashedAddress);
 
             Logger.DEBUG("Scraped IP Address from video chat | Hashed: <%s> Raw: <%s>", hashedAddress, unhashedAddress);
-            if (await IPBlockingManager.API.skipBlockedAddress(unhashedAddress)) {
+            if (await IPBlockingManager.API.skipBlockedAddress(unhashedAddress, streamerModeEnabled)) {
                 return;
             }
 
-            await this.geolocateAndDisplay(showData, unhashedAddress, hashedAddress, candidateType);
+            await this.geolocateAndDisplay(showData, unhashedAddress, hashedAddress, candidateType, streamerModeEnabled);
 
         });
 
@@ -114,7 +115,7 @@ class IPGrabberManager extends Module {
 
     }
 
-    async geolocateAndDisplay(showData, unhashedAddress, hashedAddress, candidateType = 'unknown') {
+    async geolocateAndDisplay(showData, unhashedAddress, hashedAddress, candidateType = 'unknown', streamerModeEnabled) {
         let previousQuery = {"PREVIOUS_HASHED_ADDRESS_LIST": {}};
 
         let result = await chrome.storage.local.get(previousQuery);
@@ -124,7 +125,13 @@ class IPGrabberManager extends Module {
         this.sendChatSeenEvent(seenTimes, unhashedAddress);
         this.createAddressContainer(unhashedAddress, hashedAddress, previouslyHashed, showData, seenTimes);
 
-        if (candidateType === 'relay') {
+        if (candidateType === 'relay' && streamerModeEnabled === "true") {
+                this.insertLogboxMessage(
+                "relay_note",
+                "Connection Type: ",
+                "Relayed (TURN) — this stranger is likely on a TURN/relay server."
+                );
+        } else if (candidateType === 'relay') {
                 this.insertLogboxMessage(
                 "relay_note",
                 "Connection Type: ",
@@ -150,7 +157,7 @@ class IPGrabberManager extends Module {
         }
 
 
-        await this.onGeolocationRequestCompleted(unhashedAddress, fetchJson, hashedAddress, candidateType)
+        await this.onGeolocationRequestCompleted(unhashedAddress, fetchJson, hashedAddress, candidateType, streamerModeEnabled)
 
     }
 
@@ -185,12 +192,16 @@ class IPGrabberManager extends Module {
 
     }
 
-    async insertUnhashedAddress(unhashedAddress, isDev = false, candidateType) {
+    async insertUnhashedAddress(unhashedAddress, isDev = false, candidateType, streamerModeEnabled) {
         let ipSpoiler = await (new IPAddressSpoiler(unhashedAddress)).setup();
 
         let ipMessage = this.createLogBoxMessage(
             "address_data", "IP Address: ", ipSpoiler.get()
         );
+
+        if (streamerModeEnabled === "true") {
+            ipMessage.childNodes[1].innerHTML = "[HIDDEN]";
+        }
 
         if (!isDev && candidateType !== 'relay' && candidateType !== 'unknown') {
             ipMessage.appendChild(ButtonFactory.ipBlockButton(unhashedAddress));
@@ -200,8 +211,8 @@ class IPGrabberManager extends Module {
         this.ipGrabberDiv.appendChild(ipMessage); // Add the IP first
     }
 
-    async onGeolocationRequestError(unhashedAddress) {
-        await this.insertUnhashedAddress(unhashedAddress);
+    async onGeolocationRequestError(unhashedAddress, streamerModeEnabled) {
+        await this.insertUnhashedAddress(unhashedAddress, false, 'unknown', streamerModeEnabled);
         sendErrorLogboxMessage(`Geolocation failed, check the <a class="StatusButton" href='${ConstantValues.websiteURL}' target="_blank">Status Page</a> or contact us through our <a class="DiscordButton" href='${ConstantValues.discordURL}' target="_blank">Discord Server</a>!`);
     }
 
@@ -256,8 +267,8 @@ class IPGrabberManager extends Module {
      * @param geoJSON.accuracy Kilometre accuracy of geolocation
      * @param geoJSON.timezone Request timezone
      */
-    async onGeolocationRequestCompleted(unhashedAddress, geoJSON, hashedAddress, candidateType) {
-        await this.insertUnhashedAddress(geoJSON?.ip || unhashedAddress, geoJSON?.developer || false, candidateType);
+    async onGeolocationRequestCompleted(unhashedAddress, geoJSON, hashedAddress, candidateType, streamerModeEnabled) {
+        await this.insertUnhashedAddress(geoJSON?.ip || unhashedAddress, geoJSON?.developer || false, candidateType, streamerModeEnabled);
 
         const countrySkipEnabled = await config.countrySkipToggle.retrieveValue() === "true";
 
@@ -274,7 +285,7 @@ class IPGrabberManager extends Module {
         );
 
         // Display geolocation-based fields
-        await this.displayGeolocationFields(geoJSON, hashedAddress);
+        await this.displayGeolocationFields(geoJSON, hashedAddress, streamerModeEnabled);
 
     }
 
@@ -288,7 +299,7 @@ class IPGrabberManager extends Module {
         return parseFloat(num).toFixed(2);
     }
 
-    async displayGeolocationFields(geoJSON, hashedAddress) {
+    async displayGeolocationFields(geoJSON, hashedAddress, streamerModeEnabled) {
         this.updateClock = new ChatUpdateClock(ChatRegistry.getUUID(), 1000);
 
         // Developer message
@@ -298,7 +309,7 @@ class IPGrabberManager extends Module {
 
         // If there is longitude and latitude included, add that too
         // In chat, we display a less specific (rounded to 2 decimals) version, to protect privacy.
-        if (this.containsValidKeys(geoJSON, "longitude", "latitude")) {
+        if (this.containsValidKeys(geoJSON, "longitude", "latitude") && streamerModeEnabled === "false") {
             this.insertLogboxMessage(
                 "long_lat_data", "Coordinates: ", `${this.reduceData(geoJSON.longitude)}/${this.reduceData(geoJSON.latitude)} `,
                 `<a class="ipMapsButton" href='https://maps.google.com/maps?q=${geoJSON.latitude},${geoJSON.longitude}' target="_blank">(Google Maps)</a>`
@@ -306,31 +317,32 @@ class IPGrabberManager extends Module {
         }
 
         // Automatic geolocation keys
-        Object.keys(this.GEO_MAPPINGS).forEach((key) => {
-            const entry = geoJSON[key];
-            if (!this.containsValidKeys(geoJSON, key)) {
-                return;
-            }
+        if (streamerModeEnabled === "false") {
+            Object.keys(this.GEO_MAPPINGS).forEach((key) => {
+                const entry = geoJSON[key];
+                if (!this.containsValidKeys(geoJSON, key)) {
+                    return;
+                }
 
-            this.insertLogboxMessage(
-                `${key}_data`, `${this.GEO_MAPPINGS[key]}: `, entry
-            );
-
-        });
+                this.insertLogboxMessage(
+                    `${key}_data`, `${this.GEO_MAPPINGS[key]}: `, entry
+                );
+            });
+        }     
 
         // Accuracy Information
-        if (this.containsValidKeys(geoJSON, "accuracy")) {
+        if (this.containsValidKeys(geoJSON, "accuracy") && streamerModeEnabled === "false") {
             this.insertLogboxMessage("accuracy_data", "Accuracy: ", `${geoJSON.accuracy} km radius`)
         }
 
         // Country Flag & Languages
-        if (this.containsValidKeys(geoJSON, "country_code", "country")) {
+        if (this.containsValidKeys(geoJSON, "country_code", "country") && streamerModeEnabled === "false") {
 
             // Country Flag
             $("#country_data").get(0).appendChild(
-                $(`<span> <span class='flagText nceFont'>${this.getFlagEmoji(geoJSON.country_code)}</span></span>             
+                $(`<span> <span class='flagText nceFont'>${this.getFlagEmoji(geoJSON.country_code)}</span></span>
                 `).get(0)
-            );
+         );
 
             // Languages
             if (this.languages != null) {

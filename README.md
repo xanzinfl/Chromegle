@@ -38,6 +38,12 @@ A Javascript Chrome (and Opera) Extension for Umingle, certified for Chrome 88 a
 
 # Installation
 
+## Standard Installation
+
+Get the extension from the [Chrome Web Store](https://chromewebstore.google.com/detail/chromegle-reborn-umingle/kaahpgbohjcchoicicchgahmolocanbp)
+
+## Manual Installation
+
 Manual installation is fairly easy thanks to Chrome's great developer support:
 
 [Download The Extension](https://github.com/xanzinfl/Chromegle/releases/download/v5.0.0/Chromegle-v5.0.0.zip)
@@ -54,6 +60,7 @@ Manual installation is fairly easy thanks to Chrome's great developer support:
 ## Recent Changes
 ### Whats New?
 - Refactored for Umingle!
+- Added Streamer Mode
 
 > See the full changelog [Here](./CHANGELOG.md).
 

@@ -1,11 +1,20 @@
+# Chromegle v5.0.1
+## Whats New?
+- Added streamer Mode
+
+> Enjoy chatting! Please report any bugs in the discord!
+
+
+---
+
+
 # Chromegle v5.0.0
 ## Whats New?
 - Refactored for Umingle!
 
--# Enjoy chatting! Please report any bugs in the discord!
-
 
 ---
+
 
 # Chromegle v4.7.7
 ## Whats New?
