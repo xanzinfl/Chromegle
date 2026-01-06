@@ -4,7 +4,7 @@
   "author": "github.com/xanzinfl",
   "homepage_url": "https://chromegle.org/",
   "manifest_version": 3,
-  "version": "5.0.1",
+  "version": "5.0.2",
   "icons": {
     "16": "public/images/IconLogo.png",
     "48": "public/images/IconLogo.png",
@@ -35,7 +35,6 @@
         "src/core/module.js",
         "src/core/elements.js",
         "src/core/data-loaders.js",
-        "src/core/update-check.js",
         "src/mods/chat-registry.js",
         "src/mods/chat-manager.js",
         "src/mods/auto-message.js",

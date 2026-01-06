@@ -241,6 +241,27 @@ class IPGrabberManager extends Module {
         return true;
     }
 
+    async skipStrangers(topicsOnlyEnabled) {
+        // Pre-conditions
+        if (!topicsOnlyEnabled) {
+             return false;
+        }
+
+        const topicEl = document.querySelector('.matchingInterests'); 
+        const isVisible = window.getComputedStyle(topicEl).display === 'block';
+
+        if (isVisible) return;
+
+        // Skip
+        setTimeout(() => skipIfPossible(), Math.floor(Math.random() * 1000) + 50);
+
+        // Log message
+        Logger.INFO("Skipped stranger in chat with UUID <%s>.", ChatRegistry.getUUID());
+        sendErrorLogboxMessage(`Detected user without matching topics, skipped chat.`);
+
+        return true;
+    }
+
     containsValidKeys(obj, ...keys) {
         let keyList = Object.keys(obj);
 
@@ -271,9 +292,14 @@ class IPGrabberManager extends Module {
         await this.insertUnhashedAddress(geoJSON?.ip || unhashedAddress, geoJSON?.developer || false, candidateType, streamerModeEnabled);
 
         const countrySkipEnabled = await config.countrySkipToggle.retrieveValue() === "true";
+        const topicsOnlyEnabled = await config.topicsOnlyToggle.retrieveValue() === "true";
 
         // Handle blocked countries
         if (await this.skipBlockedCountries(countrySkipEnabled, geoJSON)) {
+            return;
+        }
+
+        if (await this.skipStrangers(topicsOnlyEnabled)) {
             return;
         }
 

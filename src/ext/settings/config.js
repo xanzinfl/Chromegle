@@ -271,6 +271,16 @@ const config = {
         "storageName": "SKIP_REPEATS_TOGGLE",
         "default": "false"
     }),
+    "topicsOnlyToggle": new ToggleEdit({
+        "elementName": "topicsOnlyToggle",
+        "storageName": "TOPICS_ONLY_TOGGLE",
+        "default": "false",
+        "warning": {
+            "message": "This feature may get you banned for spam-skipping. By enabling it you agree you are aware of the risk of being banned using automation "
+                + "tools like this one provided by Chromegle. \nTIP: You may want to use auto reconnect with this.",
+            "state": "true"
+        }
+    }),
     "blockedIPList": new ExternalField({
         "external": IPBlockingManager.MENU.enable.bind(IPBlockingManager.MENU)
     }),

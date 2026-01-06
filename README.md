@@ -16,11 +16,12 @@ A Javascript Chrome (and Opera) Extension for Umingle, certified for Chrome 88 a
 # Features
 
 ## Working as intended
+- Topics Only Mode - NEW
 - Face Detection Bypass - NEW
 - Report Detection - NEW
-- Watermark Removal - NEW
-- Country Blocker - Fixed
-- Theme Settings - Fixed
+- Watermark Removal
+- Country Blocker
+- Theme Settings
 - Geolocation
 - Calltime Counter
 - Voice Commands eg. omegle skip
@@ -61,6 +62,7 @@ Manual installation is fairly easy thanks to Chrome's great developer support:
 ### Whats New?
 - Refactored for Umingle!
 - Added Streamer Mode
+- Added Topics Only Mode
 
 > See the full changelog [Here](./CHANGELOG.md).
 
