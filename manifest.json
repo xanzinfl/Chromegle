@@ -35,6 +35,7 @@
         "src/core/module.js",
         "src/core/elements.js",
         "src/core/data-loaders.js",
+        "src/core/update-check.js",
         "src/mods/chat-registry.js",
         "src/mods/chat-manager.js",
         "src/mods/auto-message.js",
