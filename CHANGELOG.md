@@ -1,8 +1,18 @@
+# Chromegle v5.1.0
+## Whats New?
+- Brought back the Paste Hotbar!
+
+# FIXES
+- Fixed the homepage UI.
+- Fixed dark themes glitching when zoomed in on video chat
+
+> Enjoy chatting! Please report any bugs in the discord!
+
+---
+
 # Chromegle v5.0.2
 ## Whats New?
 - Added Topics Only Mode
-
-> Enjoy chatting! Please report any bugs in the discord!
 
 ---
 

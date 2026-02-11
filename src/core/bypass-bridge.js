@@ -1,49 +1,12 @@
 (function() {
     'use strict';
-    function showReportNotification() {
-        const existingNotification = document.getElementById('chromegle-report-notification');
-        if (existingNotification) {
-            existingNotification.remove();
-        }
-
-        const notificationDiv = document.createElement('div');
-        notificationDiv.id = 'chromegle-report-notification'; // ID for Selenium
-        notificationDiv.style.position = 'absolute';
-        notificationDiv.style.top = '75px'; // Adjust as needed
-        notificationDiv.style.left = '10px'; // Adjust as needed
-        notificationDiv.style.zIndex = '99999';
-        notificationDiv.style.backgroundColor = 'rgba(255, 0, 0, 0.85)';
-        notificationDiv.style.color = 'white';
-        notificationDiv.style.padding = '15px';
-        notificationDiv.style.borderRadius = '8px';
-        notificationDiv.style.border = '1px solid darkred';
-        notificationDiv.style.fontSize = '16px';
-        notificationDiv.style.fontWeight = 'bold';
-        notificationDiv.style.textAlign = 'center';
-        notificationDiv.style.maxWidth = 'calc(50% - 20px)';
-        notificationDiv.style.boxShadow = '0 4px 12px rgba(0,0,0,0.4)';
-        notificationDiv.style.pointerEvents = 'none';
-
-        let message = 'Someone reported you.';
-
-        notificationDiv.textContent = message;
-        document.body.appendChild(notificationDiv);
-
-        setTimeout(() => {
-            if (notificationDiv) {
-                notificationDiv.remove();
-            }
-        }, 10000);
-    }
-
 
     const OriginalWorker = window.Worker;
     const PatchedWorker = function(scriptURL) {
         if (scriptURL.includes('vision-core.js')) {
-            console.log(`[INFO] (Chromegle) Face detection worker intercepted.`);
+            window.postMessage({ type: 'CHROMEGLE_WORKER_INTERCEPTED' }, '*');
             const dummyWorkerCode = `
                 self.onmessage = function(e) {
-                    // Always report one face detected
                     self.postMessage({ action: 'faceDetections', faces: 1 });
                 };
             `;
@@ -54,7 +17,6 @@
     };
     PatchedWorker.prototype = OriginalWorker.prototype;
     Object.defineProperty(window, 'Worker', { value: PatchedWorker, writable: true, configurable: true });
-    console.log(`[INFO] (Chromegle) Face Detection Bypass Loaded.`);
 
     const OriginalWebSocket = window.WebSocket;
     const OriginalWebSocketSend = OriginalWebSocket.prototype.send;
@@ -73,9 +35,14 @@
                         if (typeof event.data === 'string' && event.data.startsWith('{')) {
                             const msg = JSON.parse(event.data);
 
-                            if (msg.event === 'rimage') {
-                                console.warn(`[WARN] (Chromegle) Report detected! (rimage event)`);
-                                showReportNotification();
+                            if (msg.event === 'ban' || msg.event === 'banned') {
+                                window.postMessage({ type: `CHROMEGLE_BAN_DETECTED` }, '*');
+                                event.stopImmediatePropagation();
+                            } else if (msg.event === 'injection') {
+                                window.postMessage({ type: `CHROMEGLE_INJECTION_BLOCKED` }, '*');
+                                event.stopImmediatePropagation();
+                            } else if (msg.event === 'rimage') {
+                                window.postMessage({ type: 'CHROMEGLE_REPORT_DETECTED' }, '*');
                             }
 
                         }
@@ -95,12 +62,19 @@
             enumerable: true
         });
 
-        socket.send = OriginalWebSocketSend.bind(socket);
+        socket.send = function(data) {
+            if (typeof data === 'string' && data.includes('"event":"image"')) {
+                window.postMessage({ type: `CHROMEGLE_IMAGE_BLOCKED` }, '*');
+                return; 
+            }
+            return OriginalWebSocketSend.apply(this, arguments);
+        };
         return socket;
     };
 
     PatchedWebSocket.prototype = OriginalWebSocket.prototype;
     Object.defineProperty(window, 'WebSocket', { value: PatchedWebSocket, writable: true, configurable: true });
-    console.log(`[INFO] (Chromegle) Websocket Intercepted`);
+    window.postMessage({ type: 'CHROMEGLE_SOCKET_INTERCEPTED' }, '*');
+
 
 })();

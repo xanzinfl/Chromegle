@@ -88,10 +88,11 @@ html {
     color: rgb(255, 255, 255);
     font-weight: 400;
 
+    border-color: #337fca !important;
+
     display: inherit;
     position: inherit;
     z-index: inherit;
-    border: inherit;
     margin-right: inherit;
     background-size: inherit;
     /* height: inherit; */
@@ -272,40 +273,14 @@ html {
     margin-right: -1px;
 }
 
-.pasteButton {
-    width: 7em;
-    margin-bottom: 0.5em;
-    /*
-        height: 5.45em;
-
-     */
-    display: flex;
-    flex-direction: column;
-    justify-items: center;
-    justify-content: center;
-
+.bottomButton.paste {
+    width: 100px !important;
 }
 
 .pasteButtonWrapper {
     display: flex;
-    flex-direction: column;
-    align-items: stretch;
-
-    float: right;
-    width: 7em;
-    margin-top: 23px;
-    margin-right: 0.5em;
+    flex-direction: row;
     text-align: center;
-
-}
-
-
-.pasteButtonTitle {
-    font-weight: bold;
-}
-
-.pasteButtonWrapper > a {
-    flex: 1;
 }
 
 #nsfwVideoSpinner {
@@ -316,10 +291,6 @@ html {
     border-right: 8px solid transparent;
     border-top: 8px solid #ccc;
     animation: spinner .6s linear infinite;
-}
-
-.btnkbshortcut {
-    color: red;
 }
 
 .ipListTable {
@@ -628,9 +599,6 @@ span.chromegle-cancel-skip, span.chromegle-whitelist-skip, span.chromegle-un-whi
     z-index: 100;
 }
 
-/*
-Copies "btnkbshortcut"
- */
 #broadcast-id {
     float: right;
     font-size: .7em;
@@ -862,4 +830,9 @@ MODAL FALLBACK END
 
 .videoContainer.remote .mWmark { 
     display: none !important; 
+}
+
+.mainContent {
+    border-radius: 0 !important;
+    margin-bottom: 0 !important;
 }

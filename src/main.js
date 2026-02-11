@@ -17,10 +17,11 @@ let Manifest;
     )
 
     loadModules(
+         BypassManager,
          IPBlockingManager,
-         ThemeManager,
          TopicSyncManager,
          ChatRegistryManager,
+         PasteMenu,
          ChatManager,
          FilterManager,
          AutoMessageManager,
@@ -34,5 +35,11 @@ let Manifest;
          UserCountManager,
          BroadcastManager,
     );
+
+    window.addEventListener("DOMContentLoaded", () => {
+        loadModules(
+            ThemeManager,
+        );
+    });
 
 })();

@@ -72,6 +72,7 @@ class OverrideManager {
             this.#overrideHomePageText,
             this.#overrideLinks,
             this.#resizeCommonInterestsLabel,
+            this.#overrideFaq
         ].forEach((fn) => {
             try {
                 fn();
@@ -134,5 +135,7 @@ class OverrideManager {
             "<a target='_blank' href='https://github.com/xanzinfl/chromegle#authors'>Check out the developers</a> " +
             "for more :)";
     }
+
+    #overrideFaq = () => $(".faq-section").remove();
 
 }

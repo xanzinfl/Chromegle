@@ -40,7 +40,7 @@ class ChatRegistryManager extends Module {
         if (!this.pageStarted()) {
             this.#pageStarted = true;
 
-            this.#isVideoChat = $("#videowrapper").get(0) != null;
+            this.#isVideoChat = $(".videoGrid").get(0) != null;
 
             document.dispatchEvent(new CustomEvent("pageStarted", {
                 detail: {

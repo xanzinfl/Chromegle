@@ -17,11 +17,12 @@ A Javascript Chrome (and Opera) Extension for Umingle, certified for Chrome 88 a
 
 ## Working as intended
 - Topics Only Mode - NEW
-- Face Detection Bypass - NEW
-- Report Detection - NEW
-- Watermark Removal
+- Paste Hotbar -NEW
+- Face Detection Bypass
+- Report Detection
 - Country Blocker
 - Theme Settings
+- Watermark Removal
 - Geolocation
 - Calltime Counter
 - Voice Commands eg. omegle skip
@@ -60,6 +61,7 @@ Manual installation is fairly easy thanks to Chrome's great developer support:
 # Changelog
 ## Recent Changes
 ### Whats New?
+- Brough back the Paste Hotbar!
 - Refactored for Umingle!
 - Added Streamer Mode
 - Added Topics Only Mode

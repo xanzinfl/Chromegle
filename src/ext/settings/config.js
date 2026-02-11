@@ -271,6 +271,11 @@ const config = {
         "storageName": "SKIP_REPEATS_TOGGLE",
         "default": "false"
     }),
+    "pasteMenuToggle": new ToggleEdit({
+        "elementName": "pasteMenuToggle",
+        "storageName": "PASTE_MENU_TOGGLE",
+        "default": "false"
+    }),
     "topicsOnlyToggle": new ToggleEdit({
         "elementName": "topicsOnlyToggle",
         "storageName": "TOPICS_ONLY_TOGGLE",

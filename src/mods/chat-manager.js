@@ -32,7 +32,7 @@ class ChatManager extends Module {
     onClick() {
 
         // Only when not chatting, but in the chat menu (between chats)
-        if (ChatRegistry.isChatting() || $(".chatmsg").get(0) == null) {
+        if (ChatRegistry.isChatting() || $(".messageInput").get(0) == null) {
             return;
         }
 

@@ -100,11 +100,12 @@ body, header, html, .home .card {
 /*
 Secondary Colour BACKGROUND
  */
-.home .mainContent, .skipButton.stop, .skipButton, .chatmsg, 
+.home .mainContent, .skipButton.stop, .skipButton, .messageInput, 
 .rightBox, #localVideo, #remoteVideo, #videoContainer.remote,
-.inputContainer.outlined, .messageInput {
-    background: rgba(54, 57, 63, 255);
-    border-color: rgba(54, 57, 63, 255);
+.inputContainer.outlined, .messageInput, .bottomButton.paste,
+.videoCoverButton, .newFooter {
+    background: rgba(54, 57, 63, 255) !important;
+    border-color: rgba(54, 57, 63, 255) !important;
 }
 
 #localVideo, #remoteVideo, #videoContainer.remote {
@@ -115,9 +116,10 @@ Secondary Colour BACKGROUND
 /*
 Primary Colour TEXT
  */
-.home .mainContent, #mainMessages.messages, .chatmsg:focus,
+.home .mainContent, #mainMessages.messages, .messageInput:focus,
  .logitem, textarea, textarea:disabled, .videochat, .tip-message, .home .card .tag,
- .controlwrapper, .videochat, .videochat .skipButton, .information, .rules, .countryInfo, .matchingInterests, .disconnectMessage  {
+ .controlwrapper, .videochat, .videochat .skipButton, .information, .rules, .countryInfo, 
+ .matchingInterests, .disconnectMessage, .bottomButton.paste .mainText {
     color: #d2d2d2 !important;
 }
 
@@ -183,18 +185,23 @@ body {
     color: #ff4444 !important;
 }
 
-.chatmsg {
-    width: 100%;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-    font-size: 1em;
-    border: 0 none;
+.bottomButton.paste .mainText {
+    box-sizing: border-box;
     padding: 0;
     margin: 0;
-    height: 4.5em;
-    overflow: auto;
-    -webkit-appearance: none;
-    border-radius: 0;
-    -webkit-border-radius: 0
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.bottomButton.paste .subText {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    margin-top: -5px;
+    float: right;
+    font-size: 0.7em;
+    font-weight: bold;
+    color: rgb(153, 204, 255);
 }
 
 @-webkit-keyframes msgfade {
