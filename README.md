@@ -48,7 +48,7 @@ Get the extension from the [Chrome Web Store](https://chromewebstore.google.com/
 
 Manual installation is fairly easy thanks to Chrome's great developer support:
 
-[Download The Extension](https://github.com/xanzinfl/Chromegle/releases/download/v5.0.0/Chromegle-v5.0.0.zip)
+[Download The Extension](https://github.com/xanzinfl/Chromegle/releases/download/v5.1.0/Chromegle-v5.1.0.zip)
 ```
 1. Clone Repository or use the link above & Unzip
 2. Navigate to chrome://extensions/ web-page
