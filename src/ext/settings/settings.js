@@ -1,14 +1,16 @@
 let ConstantValues = {
-    websiteURL: "https://status.bloodmoonstudios.xyz/status/chromegle",
-    discordURL: "https://discord.gg/422p3anb3T",
-    githubURL: "https://github.com/xanzinfl/chromegle",
+    websiteURL: "https://chromegle.bloodmoonstudios.xyz",
+    discordURL: "https://chromegle.bloodmoonstudios.xyz/discord",
+    githubURL: "https://chromegle.bloodmoonstudios.xyz/github",
+    reviewURL: "https://chromegle.bloodmoonstudios.xyz/review",
     apiURL: "https://api.bloodmoonstudios.xyz/",
     _helpfulTips: ["We hope you enjoy our extension as much as we enjoyed making it!"],
     getHelpfulTip: () => {
         return ConstantValues._helpfulTips[[Math.floor(Math.random() * ConstantValues._helpfulTips.length)]]
             .replaceAll("%discord%", ConstantValues.discordURL)
             .replaceAll("%website%", ConstantValues.websiteURL)
-            .replaceAll("%github%", ConstantValues.githubURL);
+            .replaceAll("%github%", ConstantValues.githubURL)
+            .replaceAll("%review%", ConstantValues.reviewURL);
     },
 }
 

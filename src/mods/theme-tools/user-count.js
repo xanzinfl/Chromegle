@@ -73,7 +73,11 @@ class UserCountManager extends Module {
 
     async getUserCount() {
         try {
-            let result = await fetch(ConstantValues.apiURL + "users");
+            let result = await fetch(ConstantValues.apiURL + "users", {
+                headers: {
+                    'x-client-version': Manifest.version
+                }
+            });
             let json = await result.json();
             return json['count'];
         } catch (ex) {

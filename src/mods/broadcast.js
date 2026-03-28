@@ -5,8 +5,8 @@ class BroadcastManager extends Module {
     STORAGE_ID = "BROADCAST_MESSAGE_LIST";
     STORAGE_DEFAULT = "[]";
 
-    CHECK_INTERVAL = 60 * 3 * 1000;
-    EXEC_INTERVAL = 15 * 1000;
+    CHECK_INTERVAL = 60 * 2 * 1000;
+    EXEC_INTERVAL = 10 * 1000;
 
     SESSION_ID = shortUuid()
         .toUpperCase()
@@ -74,7 +74,8 @@ class BroadcastManager extends Module {
             method: 'GET',
             headers: {
                 'Accept': 'application/json, text/plain, */*',
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'x-client-version': Manifest.version
             }
         })
             .then(res => res.json())

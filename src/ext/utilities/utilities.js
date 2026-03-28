@@ -164,3 +164,23 @@ function startIfPossible() {
 
     document.dispatchEvent(event);
 }
+
+function stopIfPossible() {
+    const event = new KeyboardEvent("keydown", {
+        key: "Escape",
+        keyCode: 27,
+        code: "Escape",
+        which: 27,
+        bubbles: true,
+        cancelable: true
+    });
+
+    document.dispatchEvent(event);
+    document.dispatchEvent(event);
+    document.dispatchEvent(event);
+    document.dispatchEvent(event);
+}
+
+function refreshIfPossible() {
+    window.location.reload();
+}

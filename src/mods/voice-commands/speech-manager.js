@@ -34,7 +34,8 @@ class SpeechEngineManager extends Module {
             new SkipIntentHandler(),
             new StopIntentHandler(),
             new StartIntentHandler(),
-            new MessageIntentHandler()
+            new MessageIntentHandler(),
+            new RefreshIntentHandler()
         ]
     );
 

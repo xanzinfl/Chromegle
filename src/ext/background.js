@@ -15,6 +15,6 @@ chrome.runtime.onInstalled.addListener(async function (){
     await chrome.storage.sync.set(query);
 
     // Onboarding
-    chrome.tabs.create({url: "https://chromegle.org/installed"},function(){});
+    chrome.tabs.create({url: "https://chromegle.bloodmoonstudios.xyz/installed"},function(){});
 
 });

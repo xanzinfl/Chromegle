@@ -70,7 +70,7 @@ class StopIntentHandler extends AbstractIntentHandler {
     }
 
     handle(utterance) {
-        skipIfPossible();
+        stopIfPossible();
     }
 
 }
@@ -91,20 +91,33 @@ class StartIntentHandler extends AbstractIntentHandler {
 
 }
 
+class RefreshIntentHandler extends AbstractIntentHandler {
+
+    constructor() {
+        super();
+        this.setName("Refresh Chat");
+        this.addUtterances("refresh chat", "restart chat", "refresh", "restart");
+    }
+
+    handle(utterance) {
+        if (!ChatRegistry.isChatting()) {
+            refreshIfPossible();
+        }
+    }
+
+}
+
 
 class MessageIntentHandler extends AbstractIntentHandler {
 
     constructor() {
         super();
-        Logger.INFO("MessageIntentHandler Loaded")
         this.setName("Send Message");
         this.addUtterances("send message", "send a message");
     }
 
     handle(utterance) {
 
-
-        Logger.DEBUG("MessageIntentHandler HANDLE TRIGGER")
         // Already writing
         if (AutoMessageManager.writingMessage) {
             Logger.ERROR("Failed to send voice message, an auto-message is currently in progress.");

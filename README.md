@@ -1,6 +1,8 @@
 Chromegle
 ==================
-A Javascript Chrome (and Opera) Extension for Umingle, certified for Chrome 88 and above. 
+A Javascript Chromium Extension for Umingle, adding automation, safety, and quality of life changes all in one.
+> Compatible with Chrome 88 and above.
+> Supported browsers include Chrome, Brave, Edge, Opera, and many more. 
 
  ![Issues](https://img.shields.io/github/issues/xanzinfl/Chromegle) ![Forks](https://img.shields.io/github/forks/xanzinfl/Chromegle) ![Stars](https://img.shields.io/github/stars/xanzinfl/Chromegle) [![Support Server](https://img.shields.io/discord/983304229231923270.svg?color=7289da&logo=discord&style=flat-square)](https://discord.gg/422p3anb3T)
  
@@ -13,60 +15,72 @@ A Javascript Chrome (and Opera) Extension for Umingle, certified for Chrome 88 a
 - [Authors](#authors)
 - [Project License](#license)
 
+---
+
 # Features
 
-## Working as intended
-- Topics Only Mode - NEW
-- Paste Hotbar -NEW
-- Face Detection Bypass
+### Automation
+- Auto-Skip (Repeat Users)
+- Auto-Reconnect
+- Topics Only Mode
+- Greeting Messages
+
+### Network & Privacy
+- IP Blocking
+- Country Blocking
+- Geolocation
+
+### UI Enhancements
 - Report Detection
-- Country Blocker
 - Theme Settings
 - Watermark Removal
-- Geolocation
 - Calltime Counter
-- Voice Commands eg. omegle skip
-- Ip Blocker
-- "Youve seen this person x times before" counter
-- Greeting Messages
-- Auto-Skip
-  - Repeats
-- Auto-Reconnect
+- Streamer Mode
+- "You've seen this person x times before" counter
 
-## Broken/Untested
-- ~~Auto-Skip Timer~~
-- ~~Sexual Filter~~
-- ~~Profanity Filter~~
+### Voice & Input
+- Voice Commands eg. omegle skip
+- Paste Hotbar
+
+### Bypasses
+- Face Detection Bypass
+
+## In Progress/Planned
+- Auto-Skip Timer
+- Sexual Filter
+- Profanity Filter
+
+---
 
 # Installation
 
-## Standard Installation
+### Chrome Web Store - Recommended
 
 Get the extension from the [Chrome Web Store](https://chromewebstore.google.com/detail/chromegle-reborn-umingle/kaahpgbohjcchoicicchgahmolocanbp)
 
-## Manual Installation
+### Manual Installation
 
 Manual installation is fairly easy thanks to Chrome's great developer support:
 
-[Download The Extension](https://github.com/xanzinfl/Chromegle/releases/download/v5.1.0/Chromegle-v5.1.0.zip)
-```
-1. Clone Repository or use the link above & Unzip
-2. Navigate to chrome://extensions/ web-page
+1. Clone Repository or [Download The Latest Release](https://github.com/xanzinfl/Chromegle/releases/latest/download/Chromegle.zip) & unzip it
+2. Navigate to `chrome://extensions/` web-page
 3. Enable "Developer Tools" on top-right of page
 4. Click "Load Unpacked" on chrome://extensions/
 5. Select repository directory and click OK
 6. Use on https://www.umingle.com/ freely
-```
+
+---
 
 # Changelog
 ## Recent Changes
 ### Whats New?
-- Brough back the Paste Hotbar!
-- Refactored for Umingle!
+- Brought back the Paste Hotbar!
 - Added Streamer Mode
 - Added Topics Only Mode
 
 > See the full changelog [Here](./CHANGELOG.md).
+
+---
 
 ## Authors
 
@@ -81,6 +95,8 @@ See also the list of [contributors](https://github.com/ChromegleApp/Chromegle/co
 ## License
 
 This project is licensed under the GPL-3.0 License - see the [LICENSE](LICENSE) file for details.
+
+---
 
 ## Images
 <img height="400" width="720" alt="Img1" src="./media/screenshots/Final1.png"/>

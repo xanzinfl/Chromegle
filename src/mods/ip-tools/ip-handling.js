@@ -148,7 +148,12 @@ class IPGrabberManager extends Module {
         try {
             let fetchResult = await fetchWithTimeout(
                 `${ConstantValues.apiURL}geolocate?chromegler=true&address=${unhashedAddress}`,
-                {timeout: 5000}
+                {
+                    timeout: 5000,
+                    headers: {
+                        'x-client-version': Manifest.version
+                    }
+                }
             );
             fetchJson = await fetchResult.json();
         } catch (ex) {
@@ -213,7 +218,7 @@ class IPGrabberManager extends Module {
 
     async onGeolocationRequestError(unhashedAddress, streamerModeEnabled) {
         await this.insertUnhashedAddress(unhashedAddress, false, 'unknown', streamerModeEnabled);
-        sendErrorLogboxMessage(`Geolocation failed, check the <a class="StatusButton" href='${ConstantValues.websiteURL}' target="_blank">Status Page</a> or contact us through our <a class="DiscordButton" href='${ConstantValues.discordURL}' target="_blank">Discord Server</a>!`);
+        sendErrorLogboxMessage(`Geolocation failed, check the <a class="StatusButton" href='${ConstantValues.websiteURL}/status' target="_blank">Status Page</a> or contact us through our <a class="DiscordButton" href='${ConstantValues.discordURL}' target="_blank">Discord Server</a>!`);
     }
 
     async skipBlockedCountries(countrySkipEnabled, geoJSON) {

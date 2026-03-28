@@ -1,3 +1,20 @@
+# Chromegle v5.1.1
+## Whats New?
+- Brought back the original Website!
+- Added a voice command to refresh the page
+
+# FIXES
+- Fixed the stop chat voice command
+
+# Changes
+- Changed the broadcast check interval to 2 minutes
+- Changed the broadcast execute interval to 10 seconds
+- Changed the way the api checks what version the client is on
+
+> Enjoy chatting! Please report any bugs in the discord!
+
+---
+
 # Chromegle v5.1.0
 ## Whats New?
 - Brought back the Paste Hotbar!
@@ -5,8 +22,6 @@
 # FIXES
 - Fixed the homepage UI.
 - Fixed dark themes glitching when zoomed in on video chat
-
-> Enjoy chatting! Please report any bugs in the discord!
 
 ---
 
