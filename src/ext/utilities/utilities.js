@@ -149,7 +149,6 @@ function skipIfPossible() {
     });
 
     document.dispatchEvent(event);
-    document.dispatchEvent(event);
 }
 
 function startIfPossible() {
@@ -166,19 +165,11 @@ function startIfPossible() {
 }
 
 function stopIfPossible() {
-    const event = new KeyboardEvent("keydown", {
-        key: "Escape",
-        keyCode: 27,
-        code: "Escape",
-        which: 27,
-        bubbles: true,
-        cancelable: true
-    });
-
-    document.dispatchEvent(event);
-    document.dispatchEvent(event);
-    document.dispatchEvent(event);
-    document.dispatchEvent(event);
+    const stopButton = document.getElementById("pauseButton");
+    if (!stopButton) {
+        console.error("(Chromegle) Stop button not found, couldn't stop the chat.");
+    }
+    stopButton.click();
 }
 
 function refreshIfPossible() {

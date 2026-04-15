@@ -19,7 +19,7 @@ class BroadcastManager extends Module {
     #broadcasts = [];
 
     addSessionToButton() {
-        const button = document.querySelector('.bottomButton.skipButton.new');
+        const button = document.querySelector('.bottomButton.skipButton');
         if (!button) return;
 
         const subText = button.querySelector('.subText');

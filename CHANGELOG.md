@@ -1,3 +1,15 @@
+# Chromegle v5.1.2
+# FIXES
+- Fixed Skip Repeats, Topic-Skip, Country-Skip, and voice commands (stop, skip)
+- Fixed themes not applying to the new stop button
+- Fixed the Session ID being very small
+- Fixed the Clear Interests button bot showing up
+- Fixed the Online Chromeglers count not showing up on occasion
+
+> Enjoy chatting! Please report any bugs in the discord!
+
+---
+
 # Chromegle v5.1.1
 ## Whats New?
 - Brought back the original Website!
@@ -10,8 +22,6 @@
 - Changed the broadcast check interval to 2 minutes
 - Changed the broadcast execute interval to 10 seconds
 - Changed the way the api checks what version the client is on
-
-> Enjoy chatting! Please report any bugs in the discord!
 
 ---
 

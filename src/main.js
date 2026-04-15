@@ -34,17 +34,17 @@ let Manifest;
          ReconnectManager,
          IPGrabberManager,
          SpeechEngineManager,
-         ClearInterestsManager,
          SettingsManager,
          TimerSkipManager,
          RepeatSkipManager,
-         UserCountManager,
          BroadcastManager,
     );
 
     window.addEventListener("DOMContentLoaded", () => {
         loadModules(
             ThemeManager,
+            ClearInterestsManager,
+            UserCountManager,
         );
     });
 

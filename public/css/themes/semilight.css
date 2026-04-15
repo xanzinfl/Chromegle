@@ -95,9 +95,8 @@ Modal Styling
 /*
 Primary Colour BACKGROUND
  */
-body, header, html {
-    background: #fff7ee;
-
+body, header, html, .bottomButton {
+    background: #fff7ee !important;
 }
 
 
@@ -180,27 +179,16 @@ body {
 }
 
 
-.skipButton.stop {
+#pauseButton {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     font-size: 1em;
     background: transparent;
     color: #525252;
 }
 
-.skipButton.new {
-    background: #409ffe !important;
-    background-image: -o-linear-gradient(top, #80c0ff 0, #017ffe 100%);
-    background-image: -moz-linear-gradient(top, #80c0ff 0, #017ffe 100%);
-    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#80c0ff), to(#017ffe));
-    background-image: -webkit-linear-gradient(top, #80c0ff 0, #017ffe 100%);
-    background-image: -ms-linear-gradient(top, #80c0ff 0, #017ffe 100%);
-    background-image: linear-gradient(top, #80c0ff 0, #017ffe 100%);
-    font-weight: bold
-}
-
-.skipButton.really {
-    font-weight: bold;
-    color: #ff4444 !important;
+.bottomButton {
+    border: 1px solid #ddd;
+    border-radius: 10px;
 }
 
 .bottomButton.paste {
