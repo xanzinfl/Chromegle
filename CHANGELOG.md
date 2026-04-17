@@ -1,10 +1,16 @@
+# Chromegle v5.1.4
+# FIXES
+- Fixed the really button having grey text
+
+> Enjoy chatting! Please report any bugs in the discord!
+
+---
+
 # Chromegle v5.1.3
 # FIXES
 - Fixed Skip Repeats, Topic-Skip, Country-Skip, and the skip voice command
 - Fixed the really button turning white in dark themes
 - Fixed themes not applying to the report menu
-
-> Enjoy chatting! Please report any bugs in the discord!
 
 ---
 

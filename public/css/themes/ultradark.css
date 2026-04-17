@@ -117,7 +117,7 @@ Primary Colour TEXT
  */
 .home .mainContent, #mainMessages.messages, .messageInput:focus,
  .logitem, textarea, textarea:disabled, .videochat, .tip-message, .home .card .tag,
- .controlwrapper, .bottomButton, .information, .rules, .countryInfo,
+ .controlwrapper, .information, .rules, .countryInfo,
   .matchingInterests, .disconnectMessage, .bottomButton.paste, .mainText, .popup, .userNavigation button, .banChoice button {
     color: #9a9a9a !important;
 }
