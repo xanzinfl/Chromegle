@@ -1,3 +1,13 @@
+# Chromegle v5.1.3
+# FIXES
+- Fixed Skip Repeats, Topic-Skip, Country-Skip, and the skip voice command
+- Fixed the really button turning white in dark themes
+- Fixed themes not applying to the report menu
+
+> Enjoy chatting! Please report any bugs in the discord!
+
+---
+
 # Chromegle v5.1.2
 # FIXES
 - Fixed Skip Repeats, Topic-Skip, Country-Skip, and voice commands (stop, skip)
@@ -5,8 +15,6 @@
 - Fixed the Session ID being very small
 - Fixed the Clear Interests button bot showing up
 - Fixed the Online Chromeglers count not showing up on occasion
-
-> Enjoy chatting! Please report any bugs in the discord!
 
 ---
 
