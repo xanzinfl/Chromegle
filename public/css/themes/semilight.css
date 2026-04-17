@@ -191,9 +191,13 @@ body {
     border-radius: 10px;
 }
 
-.skipButton.really {
+.skipButton.really.purple .mainText{
     font-weight: bold;
     color: #ff4444 !important;
+}
+
+.skipButton.really.purple {
+    background: transparent !important;
 }
 
 .bottomButton.paste {

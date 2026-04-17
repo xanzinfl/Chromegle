@@ -161,10 +161,13 @@ body {
     font-size: 1em;
 }
 
-.skipButton.really.purple{
+.skipButton.really.purple .mainText{
     font-weight: bold;
-    background: transparent !important;
     color: #ff4444 !important;
+}
+
+.skipButton.really.purple {
+    background: transparent !important;
 }
 
 .bottomButton.paste .mainText {

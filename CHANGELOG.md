@@ -1,8 +1,14 @@
+# Chromegle v5.1.5
+# FIXES
+- Fixed the really button having grey text... again
+
+> Enjoy chatting! Please report any bugs in the discord!
+
+---
+
 # Chromegle v5.1.4
 # FIXES
 - Fixed the really button having grey text
-
-> Enjoy chatting! Please report any bugs in the discord!
 
 ---
 
