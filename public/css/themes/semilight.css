@@ -191,6 +191,11 @@ body {
     border-radius: 10px;
 }
 
+.skipButton.really {
+    font-weight: bold;
+    color: #ff4444 !important;
+}
+
 .bottomButton.paste {
     border: 1px solid #ddd;
     border-radius: 10px;
@@ -216,6 +221,11 @@ body {
     color: rgb(153, 204, 255);
 }
 
+#confirmBan {
+    font-weight: bold;
+    color: #fff !important;
+    background: #ff4444 !important;
+}
 
 @-webkit-keyframes msgfade {
     0% {

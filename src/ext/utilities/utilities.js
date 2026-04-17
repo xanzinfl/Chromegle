@@ -149,6 +149,7 @@ function skipIfPossible() {
     });
 
     document.dispatchEvent(event);
+    document.dispatchEvent(event);
 }
 
 function startIfPossible() {

@@ -92,7 +92,7 @@ Modal Styling
 /*
 Primary Colour BACKGROUND
  */
-body, header, html, .home .card {
+body, header, html, .home .card, .popup {
     background: rgb(10, 10, 10);
 }
 
@@ -100,10 +100,10 @@ body, header, html, .home .card {
 /*
 Secondary Colour BACKGROUND
  */
-.home .mainContent, .skipButton, #pauseButton, .messageInput, 
+.home .mainContent, .bottomButton, #pauseButton, .messageInput, 
 .rightBox, #localVideo, #remoteVideo, #videoContainer.remote, 
 .inputContainer.outlined, .messageInput, .bottomButton.paste,
-.videoCoverButton, .newFooter {
+.videoCoverButton, .newFooter, .userNavigation button, .banChoice button{
     background: rgb(29, 29, 31) !important;
     border-color: rgb(29, 29, 31) !important;
 }
@@ -117,8 +117,8 @@ Primary Colour TEXT
  */
 .home .mainContent, #mainMessages.messages, .messageInput:focus,
  .logitem, textarea, textarea:disabled, .videochat, .tip-message, .home .card .tag,
- .controlwrapper, .videochat, .videochat .skipButton, .information, .rules, .countryInfo,
-  .matchingInterests, .disconnectMessage, .bottomButton.paste .mainText {
+ .controlwrapper, .bottomButton, .information, .rules, .countryInfo,
+  .matchingInterests, .disconnectMessage, .bottomButton.paste, .mainText, .popup, .userNavigation button, .banChoice button {
     color: #9a9a9a !important;
 }
 
@@ -161,6 +161,12 @@ body {
     font-size: 1em;
 }
 
+.skipButton.really.purple{
+    font-weight: bold;
+    background: transparent !important;
+    color: #ff4444 !important;
+}
+
 .bottomButton.paste .mainText {
     box-sizing: border-box;
     padding: 0;
@@ -178,6 +184,12 @@ body {
     font-size: 0.7em;
     font-weight: bold;
     color: rgb(153, 204, 255);
+}
+
+#confirmBan {
+    font-weight: bold;
+    color: #fff !important;
+    background: #ff4444 !important;
 }
 
 @-webkit-keyframes msgfade {
