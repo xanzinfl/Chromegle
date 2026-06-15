@@ -1,4 +1,4 @@
-# Chromegle v5.2.2
+# Chromegle v5.2.3
 # FIXES
 - Fixed face detection bypass
 
