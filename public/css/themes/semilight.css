@@ -123,7 +123,7 @@ Tertiary Colour Background
 TEXT Colours
  */
 .skipButton, .messageInput:focus, .statuslog, .logitem, textarea, textarea:disabled,
-.controlwrapper, #mobilesitenote, .bottomButton.paste .mainText {
+.controlwrapper, #mobilesitenote, .bottomButton.paste .mainText, .premium-offer-desc {
     color: #454545;
 }
 

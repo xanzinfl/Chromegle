@@ -12,22 +12,13 @@ class BypassManager extends Module {
     window.addEventListener("message", (event) => {
       if (event.data.type === "CHROMEGLE_SOCKET_INTERCEPTED") {
         Logger.INFO("Webscoket intercepted.");
-
       } else if (event.data.type === "CHROMEGLE_WORKER_INTERCEPTED") {
         Logger.INFO("Face detection worker intercepted");
-
-      } else if (event.data.type === "CHROMEGLE_BAN_DETECTED") {
-        Logger.WARNING("BAN EVENT DETECTED");
-
-      } else if (event.data.type === "CHROMEGLE_INJECTION_BLOCKED") {
-        Logger.WARNING("Stopped Script Injection Attempt");
-
-        window.alert("It appears a site admin has attempted to inject code into your session. Chromegle has attempted to block it, but for your safety, we recommend leaving the site immediately.");
-      } else if (event.data.type === "CHROMEGLE_IMAGE_BLOCKED") {
-        Logger.WARNING("Stopped Outgoing Image Event");
+      } else if (event.data.type === "CHROMEGLE_BYPASS_FAILED") {
+        Logger.ERROR("Error bypassing detection.");
+        alert("CHROMEGLE:Unable to bypass detection. You may be at risk of being banned. Please refresh the page to try again, if the problem persists, stop using the extension immediately.");
       } else if (event.data.type === "CHROMEGLE_REPORT_DETECTED") {
         Logger.WARNING("Report detected!");
-
         this.showReportNotification();
       }
     });

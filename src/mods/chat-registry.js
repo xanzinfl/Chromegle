@@ -202,7 +202,7 @@ class ChatRegistryManager extends Module {
         if (
             el.classList.contains("information") &&
             el.closest("#mainMessages") == null &&
-            el.textContent.includes("Searching for someone to chat with...")
+            el.textContent.includes("Searching for someone to chat with")
         ) {
             if (this.#isChatting) {
                 Logger.INFO("Chat Ended: UUID <%s>", this.getUUID());

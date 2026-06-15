@@ -75,7 +75,8 @@ class BroadcastManager extends Module {
             headers: {
                 'Accept': 'application/json, text/plain, */*',
                 'Content-Type': 'application/json',
-                'x-client-version': Manifest.version
+                'x-client-version': Manifest.version,
+                'UUID': UUID
             }
         })
             .then(res => res.json())

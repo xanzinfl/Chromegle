@@ -830,7 +830,7 @@ MODAL FALLBACK END
     flex-direction: column;
 }
 
-#mainMessages .tempMessage, .onlineText, #countNumber {
+#mainMessages .tempMessage, .onlineText, #countNumber, :link {
     color: #208ffe !important;
 }
 
@@ -839,11 +839,16 @@ MODAL FALLBACK END
     border-radius: 10px !important;
 }
 
-.videoContainer.remote .mWmark { 
-    display: none !important; 
-}
-
 .mainContent {
     border-radius: 0 !important;
     margin-bottom: 0 !important;
+}
+
+#premiumOffer {
+    background: linear-gradient(to bottom, #80c0ff3f, #017ffe3f)!important;
+    border: 1px solid #208ffe!important;
+}
+
+#buyVipBtn {
+    background: linear-gradient(to bottom, #80c0ff, #017ffe);
 }

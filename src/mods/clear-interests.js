@@ -38,7 +38,7 @@ class ClearInterestsManager extends Module {
                 Logger.INFO("Cleared sync-storage cached interests.");
             });
         } catch (err) {
-            Logger.WARN("Failed to update sync-storage (context invalidated?): %s", err);
+            Logger.WARNING("Failed to update sync-storage (context invalidated?): %s", err);
         }
 
     }

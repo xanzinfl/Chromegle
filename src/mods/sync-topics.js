@@ -47,7 +47,7 @@ class TopicSyncManager extends Module {
                 Logger.INFO("Updated sync-storage cached interests on <%s> event: %s", eventType, JSON.stringify(localTopics));
             });
         } catch (err) {
-            Logger.WARN("Failed to update sync-storage (context invalidated?): %s", err);
+            Logger.WARNING("Failed to update sync-storage (context invalidated?): %s", err);
         }
     }
 

@@ -72,7 +72,8 @@ class OverrideManager {
             this.#overrideHomePageText,
             this.#overrideLinks,
             this.#resizeCommonInterestsLabel,
-            this.#overrideFaq
+            this.#overrideFaq,
+            this.#removeWmark
         ].forEach((fn) => {
             try {
                 fn();
@@ -138,4 +139,18 @@ class OverrideManager {
 
     #overrideFaq = () => $(".faq-section").remove();
 
+    #removeWmark = () => {
+        const wrapper = document.querySelector('.videoWrapper.remote.noSelect');
+        const wm = document.querySelector('.mWmark');
+        const video = document.getElementById('remoteVideo');
+
+        if (wrapper && wm && video) {
+            wrapper.style.position = 'relative';
+            wm.style.zIndex = '-1';
+            wm.style.position = 'absolute';
+            wm.style.top = '0';
+            wm.style.left = '0';
+            video.style.zIndex = '1';
+        }
+    }
 }

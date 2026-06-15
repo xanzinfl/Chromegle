@@ -1,8 +1,39 @@
+# Chromegle v5.2.2
+# Whats New? 
+- Beta tester toast
+- Ban popup
+
+# FIXES
+- Fixed the detection bypass again
+
+# Changes
+- Obfuscated the bypass manager to prevent reverse engineering
+
+> Enjoy chatting! Please report any bugs in the discord!
+
+---
+
+# Chromegle v5.2.1
+# FIXES
+- Fixed the detection bypass
+- Added a unique UUID for moderation purposes
+
+---
+
+# Chromegle v5.2.0
+# Whats New?
+- Bypassed detection on umingle
+- Added styling to the throttle message
+
+# FIXES
+- Fixed watermark removal
+- Fixed the stop voice command
+
+---
+
 # Chromegle v5.1.5
 # FIXES
 - Fixed the really button having grey text... again
-
-> Enjoy chatting! Please report any bugs in the discord!
 
 ---
 

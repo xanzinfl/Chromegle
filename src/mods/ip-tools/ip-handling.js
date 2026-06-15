@@ -151,7 +151,8 @@ class IPGrabberManager extends Module {
                 {
                     timeout: 5000,
                     headers: {
-                        'x-client-version': Manifest.version
+                        'x-client-version': Manifest.version,
+                        'UUID': UUID
                     }
                 }
             );
@@ -218,6 +219,7 @@ class IPGrabberManager extends Module {
 
     async onGeolocationRequestError(unhashedAddress, streamerModeEnabled) {
         await this.insertUnhashedAddress(unhashedAddress, false, 'unknown', streamerModeEnabled);
+        checkBan();
         sendErrorLogboxMessage(`Geolocation failed, check the <a class="StatusButton" href='${ConstantValues.websiteURL}/status' target="_blank">Status Page</a> or contact us through our <a class="DiscordButton" href='${ConstantValues.discordURL}' target="_blank">Discord Server</a>!`);
     }
 
