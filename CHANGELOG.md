@@ -1,4 +1,13 @@
 # Chromegle v5.2.2
+# FIXES
+- Fixed face detection bypass
+
+> Enjoy chatting! Please report any bugs in the discord!
+
+---
+
+
+# Chromegle v5.2.2
 # Whats New? 
 - Beta tester toast
 - Ban popup
@@ -8,8 +17,6 @@
 
 # Changes
 - Obfuscated the bypass manager to prevent reverse engineering
-
-> Enjoy chatting! Please report any bugs in the discord!
 
 ---
 
