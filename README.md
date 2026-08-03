@@ -1,3 +1,9 @@
+> [!NOTE]
+> This project is currently unsupported, no further updates will be made **for umingle**. It is possible that it will come back on another site, if you have any recomendations, feel free to let us know!
+
+> [!CAUTION]
+> Chromegle is currently detected on umingle, you may be banned if you use it.
+
 Chromegle
 ==================
 A Javascript Chromium Extension for Umingle, adding automation, safety, and quality of life changes all in one.
